@@ -3,23 +3,23 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/categories/</loc>
+    <loc>https://ttauveron.github.io/test/categories/</loc>
   </url>
   
   <url>
-    <loc>/posts/hello_world/</loc>
+    <loc>https://ttauveron.github.io/test/posts/hello_world/</loc>
   </url>
   
   <url>
-    <loc>/posts/</loc>
+    <loc>https://ttauveron.github.io/test/posts/</loc>
   </url>
   
   <url>
-    <loc>/tags/</loc>
+    <loc>https://ttauveron.github.io/test/tags/</loc>
   </url>
   
   <url>
-    <loc>/</loc>
+    <loc>https://ttauveron.github.io/test/</loc>
   </url>
   
 </urlset>

@@ -2,15 +2,15 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on ttauveron.blog</title>
-    <link>/posts/</link>
+    <link>https://ttauveron.github.io/test/posts/</link>
     <description>Recent content in Posts on ttauveron.blog</description>
-    <generator>Hugo -- gohugo.io</generator><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://ttauveron.github.io/test/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hello world!</title>
-      <link>/posts/hello_world/</link>
+      <link>https://ttauveron.github.io/test/posts/hello_world/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/posts/hello_world/</guid>
+      <guid>https://ttauveron.github.io/test/posts/hello_world/</guid>
       <description>Hello world!
 My name is Thibaut Tauveron, I work in software engineering, broadly speaking.
 I&amp;rsquo;m specialized in DevOps practices and I like hacking around with various techs.
