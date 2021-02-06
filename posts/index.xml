@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on ttauveron&#39;s blog</title>
+    <title>Posts on ttauveron.blog</title>
     <link>https://blog.ttauveron.xyz/posts/</link>
-    <description>Recent content in Posts on ttauveron&#39;s blog</description>
-    <generator>Hugo -- gohugo.io</generator><atom:link href="https://blog.ttauveron.xyz/posts/index.xml" rel="self" type="application/rss+xml" />
+    <description>Recent content in Posts on ttauveron.blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 05 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.ttauveron.xyz/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hello world!</title>
       <link>https://blog.ttauveron.xyz/posts/hello_world/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 05 Feb 2021 00:00:00 +0000</pubDate>
       
       <guid>https://blog.ttauveron.xyz/posts/hello_world/</guid>
       <description>Hello world!

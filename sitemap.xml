@@ -3,23 +3,26 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://blog.ttauveron.xyz/categories/</loc>
-  </url>
-  
-  <url>
     <loc>https://blog.ttauveron.xyz/posts/hello_world/</loc>
+    <lastmod>2021-02-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://blog.ttauveron.xyz/posts/</loc>
-  </url>
-  
-  <url>
-    <loc>https://blog.ttauveron.xyz/tags/</loc>
+    <lastmod>2021-02-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://blog.ttauveron.xyz/</loc>
+    <lastmod>2021-02-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.ttauveron.xyz/categories/</loc>
+  </url>
+  
+  <url>
+    <loc>https://blog.ttauveron.xyz/tags/</loc>
   </url>
   
 </urlset>
