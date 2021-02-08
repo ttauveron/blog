@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Thibaut Tauveron</title>
-    <link>https://blog.ttauveron.xyz/posts/</link>
+    <link>https://blog.ttauveron.com/posts/</link>
     <description>Recent content in Posts on Thibaut Tauveron</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 05 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.ttauveron.xyz/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 05 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.ttauveron.com/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hello world!</title>
-      <link>https://blog.ttauveron.xyz/posts/hello_world/</link>
+      <link>https://blog.ttauveron.com/posts/hello_world/</link>
       <pubDate>Fri, 05 Feb 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://blog.ttauveron.xyz/posts/hello_world/</guid>
+      <guid>https://blog.ttauveron.com/posts/hello_world/</guid>
       <description>Hello world!
 My name is Thibaut, I work in software engineering, broadly speaking.
 I&amp;rsquo;m specialized in DevOps practices and I like hacking around with various tech.
