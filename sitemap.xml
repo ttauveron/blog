@@ -3,26 +3,47 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://blog.ttauveron.com/posts/blog_post_vpc_peering/</loc>
+    <lastmod>2021-02-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.ttauveron.com/tags/gcp/</loc>
+    <lastmod>2021-02-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.ttauveron.com/tags/haproxy/</loc>
+    <lastmod>2021-02-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.ttauveron.com/posts/</loc>
+    <lastmod>2021-02-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.ttauveron.com/tags/</loc>
+    <lastmod>2021-02-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.ttauveron.com/</loc>
+    <lastmod>2021-02-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.ttauveron.com/tags/vpc/</loc>
+    <lastmod>2021-02-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://blog.ttauveron.com/posts/hello_world/</loc>
     <lastmod>2021-02-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://blog.ttauveron.com/posts/</loc>
-    <lastmod>2021-02-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.ttauveron.com/</loc>
-    <lastmod>2021-02-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://blog.ttauveron.com/categories/</loc>
-  </url>
-  
-  <url>
-    <loc>https://blog.ttauveron.com/tags/</loc>
   </url>
   
 </urlset>

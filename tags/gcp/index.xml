@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>gcp on Thibaut Tauveron</title>
+    <link>https://blog.ttauveron.com/tags/gcp/</link>
+    <description>Recent content in gcp on Thibaut Tauveron</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 08 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.ttauveron.com/tags/gcp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Configuring a TCP proxy between networks in GCP</title>
+      <link>https://blog.ttauveron.com/posts/blog_post_vpc_peering/</link>
+      <pubDate>Mon, 08 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.ttauveron.com/posts/blog_post_vpc_peering/</guid>
+      <description>I worked on an interesting challenge recently and I thought it would be nice to write a blog post about it!
+A little context first, there are two Google Cloud projects (which could be in two different organizations) and each one of those have their own network. A client in Project A needs to access an API in project B but this API is not publicly exposed for security reasons.</description>
+    </item>
+    
+  </channel>
+</rss>

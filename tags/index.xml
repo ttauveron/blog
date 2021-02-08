@@ -4,6 +4,34 @@
     <title>Tags on Thibaut Tauveron</title>
     <link>https://blog.ttauveron.com/tags/</link>
     <description>Recent content in Tags on Thibaut Tauveron</description>
-    <generator>Hugo -- gohugo.io</generator><atom:link href="https://blog.ttauveron.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 08 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.ttauveron.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>gcp</title>
+      <link>https://blog.ttauveron.com/tags/gcp/</link>
+      <pubDate>Mon, 08 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.ttauveron.com/tags/gcp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>haproxy</title>
+      <link>https://blog.ttauveron.com/tags/haproxy/</link>
+      <pubDate>Mon, 08 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.ttauveron.com/tags/haproxy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>vpc</title>
+      <link>https://blog.ttauveron.com/tags/vpc/</link>
+      <pubDate>Mon, 08 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.ttauveron.com/tags/vpc/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>

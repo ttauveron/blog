@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+      <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <meta name="author" content="Thibaut Tauveron"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "Thibaut Tauveron",
+    
+    "url": "https:\/\/blog.ttauveron.com"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/blog.ttauveron.com"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/blog.ttauveron.com",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/blog.ttauveron.com\/posts\/blog_post_vpc_peering\/",
+          "name": "Configuring a t c p proxy between networks in g c p"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "Thibaut Tauveron"
+  },
+  "headline": "Configuring a TCP proxy between networks in GCP",
+  "description" : "I worked on an interesting challenge recently and I thought it would be nice to write a blog post about it!\nA little context first, there are two Google Cloud projects (which could be in two different organizations) and each one of those have their own network. A client in Project A needs to access an API in project B but this API is not publicly exposed for security reasons.",
+  "inLanguage" : "en",
+  "wordCount":  764 ,
+  "datePublished" : "2021-02-08T00:00:00",
+  "dateModified" : "2021-02-08T00:00:00",
+  "image" : "https:\/\/blog.ttauveron.com",
+  "keywords" : [ "gcp, haproxy, vpc" ],
+  "mainEntityOfPage" : "https:\/\/blog.ttauveron.com\/posts\/blog_post_vpc_peering\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/blog.ttauveron.com",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/blog.ttauveron.com",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="Configuring a TCP proxy between networks in GCP" />
+<meta property="og:description" content="How to access an internal API from another VPC">
+<meta property="og:url" content="https://blog.ttauveron.com/posts/blog_post_vpc_peering/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Thibaut Tauveron" />
+
+  <meta name="twitter:title" content="Configuring a TCP proxy between networks in GCP" />
+  <meta name="twitter:description" content="How to access an internal API from another VPC">
+  <meta name="twitter:card" content="summary" />
+  <link href='https://blog.ttauveron.com/img/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta name="generator" content="Hugo 0.80.0" />
+  <link rel="alternate" href="https://blog.ttauveron.com/index.xml" type="application/rss+xml" title="Thibaut Tauveron">
+  <link rel="stylesheet" href="https://blog.ttauveron.com/fontawesome/css/all.css" />
+  <link rel="stylesheet" href="https://blog.ttauveron.com/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://blog.ttauveron.com/css/main.css" />
+
+  </head>
+  <body>
+    
+
+
+<nav class="navbar navbar-custom">
+
+
+    <a class="header-title" href="https://blog.ttauveron.com">Thibaut Tauveron</a>
+    <ul class="list-inline text-center fa-sm header-links">
+
+        <li class="list-inline-item">
+            <a href="https://github.com/ttauveron" title="GitHub">
+                  <span class="fa-stack">
+                    <div class="fab fa-github fa-stack-1x"></div>
+                  </span>
+            </a>
+        </li>
+        <li class="list-inline-item">
+            <a href="https://linkedin.com/in/ttauveron" title="LinkedIn">
+                  <span class="fa-stack">
+                    <div class="fab fa-linkedin fa-stack-1x"></div>
+                  </span>
+            </a>
+        </li>
+        <li class="list-inline-item">
+            <a href="/index.xml" title="RSS">
+              <span class="fa-stack">
+                <div class="fa fa-rss fa-stack-1x"></div>
+              </span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+          <h1>Configuring a TCP proxy between networks in GCP</h1>
+          <span class="date">Monday, February 8, 2021</span>
+        <p>I worked on an interesting challenge recently and I thought it would be nice to write a blog post about it!</p>
+<p>A little context first, there are two Google Cloud projects (which could be in two different organizations) and each one
+of those have their own network.
+A client in Project A needs to access an API in project B but this API is not publicly exposed for security reasons.</p>
+<figure>
+    <img src="https://docs.google.com/presentation/d/1bClZZC0YyqQH4qe9KQMyW92Dwbt7fQl4RLic72m2M3c/export/jpeg?id=1bClZZC0YyqQH4qe9KQMyW92Dwbt7fQl4RLic72m2M3c&amp;pageid=gb5b8e96233_0_0" width="75%"/> 
+</figure>
+
+<p>We could think about pairing the two networks together but we would potentially have overlapping IP issues.
+It would also be possible to solve this problem by playing around in subnets configuration, but it would add a lot of
+complexity (IP subnet addressing rules, coordination between teams for network management) and it doesn&rsquo;t really scale,
+for example, what if I have to pair with third network in the future?</p>
+<p>My solution is to use a proxy between the two networks so that they remain decoupled as much as possible.</p>
+<figure>
+    <img src="https://docs.google.com/presentation/d/1bClZZC0YyqQH4qe9KQMyW92Dwbt7fQl4RLic72m2M3c/export/jpeg?id=1bClZZC0YyqQH4qe9KQMyW92Dwbt7fQl4RLic72m2M3c&amp;pageid=gbac457ac4e_0_4" width="75%"/> 
+</figure>
+
+<p>Here we create a vpc-proxy in our project A, which will use a convenient subnet for project B.
+As this vpc-proxy is in our project, we can attach a VM network interface to it.
+As a result, we can create a VM with two network interfaces, connecting respectively to vpc-network-a and vpc-proxy.</p>
+<p>A specific use case could be that the client in A is a Jenkins instance trying to deploy an application in a Kubernetes
+cluster in B.
+From Jenkins, we can point to the VM proxy IP in A which will route the request to the Kubernetes API server in B.</p>
+<p>To configure the proxy, I did the following :</p>
+<figure>
+    <img src="https://docs.google.com/presentation/d/1bClZZC0YyqQH4qe9KQMyW92Dwbt7fQl4RLic72m2M3c/export/jpeg?id=1bClZZC0YyqQH4qe9KQMyW92Dwbt7fQl4RLic72m2M3c&amp;pageid=gb5b8e96233_0_158" width="100%"/> 
+</figure>
+
+<p>L3 and L4 refer to the network and transport layers in the OSI model, we can solve network communications at L3 with
+proper routing tables that will make each network interface independant from the other.
+Then we TCP forwarding rules at L4 with haproxy, this will allow us to create TCP mappings between
+<code>[proxy interface IP]</code>:<code>[source port]</code> and <code>[API destination IP]</code>:<code>[API destination port]</code>.</p>
+<p>Deep dive into the actual configuration! First, we need two routing tables, one for each network interface.
+Fortunately, the <a href="https://cloud.google.com/vpc/docs/create-use-multiple-interfaces#configuring_policy_routing">Google cloud documentation</a>
+helps us with this.</p>
+<p>Here is the setup in the proxy VM in my case:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell"><span style="color:#998;font-style:italic"># First routing table</span>
+<span style="color:#0086b3">echo</span> <span style="color:#d14">&#34;1 rt1&#34;</span> | sudo tee -a /etc/iproute2/rt_tables
+sudo ip route add 192.168.0.1 src 192.168.0.4 dev ens4 table rt1
+sudo ip route add default via 192.168.0.1 dev ens4 table rt1
+sudo ip rule add from 192.168.0.2/32 table rt1
+sudo ip rule add to 192.168.0.2/32 table rt1
+
+<span style="color:#998;font-style:italic"># Second routing table</span>
+<span style="color:#0086b3">echo</span> <span style="color:#d14">&#34;2 rt2&#34;</span> | sudo tee -a /etc/iproute2/rt_tables
+sudo ip route add 192.168.1.1 src 192.168.1.2 dev ens5 table rt2
+sudo ip route add default via 192.168.1.1 dev ens5 table rt2
+sudo ip rule add from 192.168.1.2/32 table rt2
+sudo ip rule add to 192.168.1.2/32 table rt2
+</code></pre></div><p>If you just run a simple ping from the proxy, the default gateway will be used and you will be able to
+reach only one network from the proxy. In our case, nic0 (first interface = default gateway) is in network A, so a ping
+to 10.3.0.3 will reach the client in A. For the routing tables we just created to kick in, we need to specify the IP
+source in our commands. We can run <code>sudo tcpdump -i ens4 -qtln icmp</code> in a target VM to verify that it receives our
+ping requests.</p>
+<p>Let&rsquo;s test if the routing works in the proxy VM :</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell"><span style="color:#998;font-style:italic"># Reaching the client</span>
+ping -I 192.168.0.2 10.3.0.3
+
+<span style="color:#998;font-style:italic"># Reaching the server</span>
+ping -I 192.168.1.2 10.3.0.4
+
+<span style="color:#998;font-style:italic"># And, for example, if we have a web server running in the server</span>
+curl --interface 192.168.1.2 http://10.3.0.4
+</code></pre></div><p>The trick is to use the source IP, now we need to install haproxy (<code>sudo apt install haproxy</code>) and configure our
+mappings, which is easy to do!</p>
+<p>Let&rsquo;s edit <code>/etc/haproxy/haproxy.cfg</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-cfg" data-lang="cfg"><span style="color:#008080">global</span>
+<span style="color:#008080">defaults</span>
+  <span style="color:#008080">timeout client 30s</span>
+  <span style="color:#008080">timeout server 30s</span>
+  <span style="color:#008080">timeout connect 30s</span>
+
+<span style="color:#008080">frontend network-a-frontend</span>
+  <span style="color:#008080">bind 192.168.0.2:8000</span>
+  <span style="color:#008080">default_backend network-b-server</span>
+
+<span style="color:#008080">backend network-b-server</span>
+  <span style="color:#008080">mode tcp</span>
+  <span style="color:#008080">source 192.168.1.2</span>
+  <span style="color:#008080">server upstream 10.3.0.4:443</span>
+</code></pre></div><p>Notice that in the backend configuration, we specify the source IP to pick the right routing table.
+Also, we could have other frontend/backend entries to route TCP the other way around, from B to A.</p>
+<p>Let&rsquo;s deploy the configuration with <code>sudo service haproxy restart</code> and check if this works from the client using
+<code>curl 192.168.0.2:8000</code>.</p>
+<p>Hopefully it does 😄</p>
+<p>We have now two decoupled network that can communicate through TCP, it requires only to maintain the haproxy mappings to
+decide what goes where.</p>
+<p>That setup feels very manual&hellip; but this could be done with Ansible as a second step!</p>
+
+
+        
+          <div class="blog-tags">
+            
+              <a href="https://blog.ttauveron.com/tags/gcp/">gcp</a>&nbsp;
+            
+              <a href="https://blog.ttauveron.com/tags/haproxy/">haproxy</a>&nbsp;
+            
+              <a href="https://blog.ttauveron.com/tags/vpc/">vpc</a>&nbsp;
+            
+          </div>
+        
+
+      </article>
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="d-flex justify-content-center">
+        <p class="credits copyright text-muted">
+          Thibaut Tauveron
+          &nbsp;&bull;&nbsp;&copy;
+            2021
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+  </body>
+</html>
+
