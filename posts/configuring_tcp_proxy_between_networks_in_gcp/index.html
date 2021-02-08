@@ -218,7 +218,7 @@ Also, we could have other frontend/backend entries to route TCP the other way ar
 <p>Let&rsquo;s deploy the configuration with <code>sudo service haproxy restart</code> and check if this works from the client using
 <code>curl 192.168.0.2:8000</code>.</p>
 <p>Hopefully it does 😄</p>
-<p>We have now two decoupled network that can communicate through TCP, it requires only to maintain the haproxy mappings to
+<p>We have now two decoupled networks that can communicate through TCP, it requires only to maintain the haproxy mappings to
 decide what goes where.</p>
 <p>That setup feels very manual&hellip; but this could be done with Ansible as a second step!</p>
 
