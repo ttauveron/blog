@@ -55,7 +55,7 @@
   "headline": "Deploy traefik in GKE using (L7) Google HTTP\/S Load balancer",
   "description" : "Using Google Load Balancers in GKE Google Cloud proposes multiple types of load balancers and we can use those in GKE.\nUsually, the first thing we do in GKE when we need to expose a service is to set its type to type: LoadBalancer. Under the hood, GCP automatically creates a Regional External TCP\/UDP Network Load Balancer (L4) that gives us an IP address in Kubernetes to reach our service.",
   "inLanguage" : "en",
-  "wordCount":  1132 ,
+  "wordCount":  1133 ,
   "datePublished" : "2021-02-15T00:00:00",
   "dateModified" : "2021-02-15T00:00:00",
   "image" : "https:\/\/blog.ttauveron.com",
@@ -188,7 +188,7 @@ The Identity-Aware Proxy allows to restrict HTTP/S access to a list of users/gro
 <p>For example, the L4 load balancer is the default kind of load balancer used by the <a href="https://voyagermesh.com/">Voyager ingress controller</a> which, by design, uses a load balancer per ingress (<a href="https://github.com/kubernetes/ingress-nginx/issues/1539#issuecomment-337352587">more details in here</a>). Say you have 10 services you need to expose, you will use 10 ingresses and GCP will create 10 L4 load balancers.</p>
 <p>Regarding the GCP pricing, there is a flat rate for the first 5 forwarding rules (<a href="https://cloud.google.com/vpc/network-pricing#forwarding-rules-pricing-examples">billed separately for regional and global forwarding rules</a>) and additional rules are billed on top of that. That means we should optimize our setup to use a minimum amount of load balancers, ideally up to 5.</p>
 <p>We could think about stacking everything in a single ingress to have a only one load balancer in GCP and minimize costs doing so, but, in my ideal world, I would like to manage decoupled deployments so I don&rsquo;t want to edit a central ingress with all the &ldquo;path-service&rdquo; mappings.</p>
-<p>We address those concerns using <a href="https://github.com/traefik/traefik">Traefik</a>.
+<p>We can address those concerns using <a href="https://github.com/traefik/traefik">Traefik</a>.
 Indeed, we can expose Traefik behind a L7 load balancer and use its CRDs to specify the ingress routes.
 We&rsquo;ll see next how it looks like.</p>
 <h3 id="deploying-traefik">Deploying Traefik</h3>
