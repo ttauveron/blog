@@ -563,3 +563,8 @@ footer .theme-by {
     border-bottom-left-radius: 5px;
 }
 
+/* Override code syntax highlighting css */
+.chroma {
+    background-color: #f6f6f6;
+    padding: 12px;
+}

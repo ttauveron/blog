@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>traefik on Thibaut Tauveron</title>
+    <link>https://blog.ttauveron.com/tags/traefik/</link>
+    <description>Recent content in traefik on Thibaut Tauveron</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 15 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.ttauveron.com/tags/traefik/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Deploy traefik in GKE using (L7) Google HTTP/S Load balancer</title>
+      <link>https://blog.ttauveron.com/posts/traefik_behind_google_l7_load_balancer/</link>
+      <pubDate>Mon, 15 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.ttauveron.com/posts/traefik_behind_google_l7_load_balancer/</guid>
+      <description>Using Google Load Balancers in GKE Google Cloud proposes multiple types of load balancers and we can use those in GKE.
+Usually, the first thing we do in GKE when we need to expose a service is to set its type to type: LoadBalancer. Under the hood, GCP automatically creates a Regional External TCP/UDP Network Load Balancer (L4) that gives us an IP address in Kubernetes to reach our service.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+      <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <meta name="author" content="Thibaut Tauveron"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "Thibaut Tauveron",
+    
+    "url": "https:\/\/blog.ttauveron.com"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/blog.ttauveron.com"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/blog.ttauveron.com",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/blog.ttauveron.com\/posts\/traefik_behind_google_l7_load_balancer\/",
+          "name": "Deploy traefik in g k e using ( l7) google h t t p\/ s load balancer"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "Thibaut Tauveron"
+  },
+  "headline": "Deploy traefik in GKE using (L7) Google HTTP\/S Load balancer",
+  "description" : "Using Google Load Balancers in GKE Google Cloud proposes multiple types of load balancers and we can use those in GKE.\nUsually, the first thing we do in GKE when we need to expose a service is to set its type to type: LoadBalancer. Under the hood, GCP automatically creates a Regional External TCP\/UDP Network Load Balancer (L4) that gives us an IP address in Kubernetes to reach our service.",
+  "inLanguage" : "en",
+  "wordCount":  1132 ,
+  "datePublished" : "2021-02-15T00:00:00",
+  "dateModified" : "2021-02-15T00:00:00",
+  "image" : "https:\/\/blog.ttauveron.com",
+  "keywords" : [ "gcp, kubernetes, traefik, ingress" ],
+  "mainEntityOfPage" : "https:\/\/blog.ttauveron.com\/posts\/traefik_behind_google_l7_load_balancer\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/blog.ttauveron.com",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/blog.ttauveron.com",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="Deploy traefik in GKE using (L7) Google HTTP/S Load balancer" />
+<meta property="og:description" content="Improving global latency and potentially saving costs">
+<meta property="og:url" content="https://blog.ttauveron.com/posts/traefik_behind_google_l7_load_balancer/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Thibaut Tauveron" />
+
+  <meta name="twitter:title" content="Deploy traefik in GKE using (L7) Google HTTP/S Load balancer" />
+  <meta name="twitter:description" content="Improving global latency and potentially saving costs">
+  <meta name="twitter:card" content="summary" />
+  <link href='https://blog.ttauveron.com/img/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta name="generator" content="Hugo 0.80.0" />
+  <link rel="alternate" href="https://blog.ttauveron.com/index.xml" type="application/rss+xml" title="Thibaut Tauveron">
+  <link rel="stylesheet" href="https://blog.ttauveron.com/fontawesome/css/all.css" />
+  <link rel="stylesheet" href="https://blog.ttauveron.com/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://blog.ttauveron.com/css/syntax.css" />
+  <link rel="stylesheet" href="https://blog.ttauveron.com/css/main.css" />
+
+  </head>
+  <body>
+    
+
+
+<nav class="navbar navbar-custom">
+
+
+    <a class="header-title" href="https://blog.ttauveron.com">Thibaut Tauveron</a>
+    <ul class="list-inline text-center fa-sm header-links">
+
+        <li class="list-inline-item">
+            <a href="https://github.com/ttauveron" title="GitHub">
+                  <span class="fa-stack">
+                    <div class="fab fa-github fa-stack-1x"></div>
+                  </span>
+            </a>
+        </li>
+        <li class="list-inline-item">
+            <a href="https://linkedin.com/in/ttauveron" title="LinkedIn">
+                  <span class="fa-stack">
+                    <div class="fab fa-linkedin fa-stack-1x"></div>
+                  </span>
+            </a>
+        </li>
+        <li class="list-inline-item">
+            <a href="/index.xml" title="RSS">
+              <span class="fa-stack">
+                <div class="fa fa-rss fa-stack-1x"></div>
+              </span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+          <h1>Deploy traefik in GKE using (L7) Google HTTP/S Load balancer</h1>
+          <span class="date">Monday, February 15, 2021</span>
+        <figure>
+    <img src="https://docs.google.com/presentation/d/1TodLiLoCs7IIwpq5713WEgmKiFkgTRCo4M5NvduWLlk/export/jpeg?id=1TodLiLoCs7IIwpq5713WEgmKiFkgTRCo4M5NvduWLlk&amp;pageid=p" width="800px"/> 
+</figure>
+
+<h3 id="using-google-load-balancers-in-gke">Using Google Load Balancers in GKE</h3>
+<p>Google Cloud proposes multiple types of load balancers and we can use those in GKE.</p>
+<p>Usually, the first thing we do in GKE when we need to expose a service is to set its type to <code>type: LoadBalancer</code>. Under the hood, GCP automatically creates a Regional External TCP/UDP Network Load Balancer (L4) that gives us an IP address in Kubernetes to reach our service.</p>
+<p>This LoadBalancer is flexible as we can expose TCP services such as ssh (used with git for example) or jnlp ports for Jenkins agents.
+One downside however is that it is regional and that can cause latency if the service is to be accessed from a distant region.</p>
+<p>To deal with global latency, I think a good solution is to use a L7 Google External HTTP(S) Load Balancer because, according to Google, it uses Google frontends that are distributed globally and operate together using Google&rsquo;s global network and control plane. Of course this load balancer works only with HTTP/S, so we can&rsquo;t use it to reach a ssh server, but that covers most of the use cases exposing web servers (web sockets are also supported).</p>
+<p>The Google cloud documentation provides some <a href="https://cloud.google.com/load-balancing/docs/tutorials/optimize-app-latency">benchmarks</a> from Germany to us-central1 with the following results:</p>
+
+
+
+
+
+<table class="table table-bordered">
+<thead>
+<tr>
+<th>Option</th>
+<th>Ping</th>
+<th>TTFB</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>No load balancing</td>
+<td>110 ms to the web server</td>
+<td>230 ms</td>
+</tr>
+<tr>
+<td>Network Load Balancing</td>
+<td>110 ms to the in-region network load balancer</td>
+<td>230 ms</td>
+</tr>
+<tr>
+<td>HTTP(S) Load Balancing</td>
+<td>1 ms to the closest GFE</td>
+<td>123 ms</td>
+</tr>
+</tbody>
+</table>
+
+
+<p>That&rsquo;s definitely an improvement!</p>
+<p>There are also interesting features available with the Google L7 load balancer such as the integrations with Cloud CDN and the Identity-Aware Proxy.
+Cloud CDN allows to cache HTTP content close to users, this is particularly useful when the web app we are hosting includes heavy javascript libs to be downloaded by the browser.
+The Identity-Aware Proxy allows to restrict HTTP/S access to a list of users/groups that have a google account.</p>
+<p>To use a HTTP load balancer instead of a network load balancer, we need to expose a service through google ingress and set <code>type: NodePort</code> in the service object (<a href="https://cloud.google.com/kubernetes-engine/docs/concepts/ingress#multiple_backend_services">more details in here</a>).</p>
+<h3 id="choosing-an-ingress-controller">Choosing an ingress controller</h3>
+<p>The way we indirectly use those load balancers in Kubernetes can have an impact on the costs.</p>
+<p>For example, the L4 load balancer is the default kind of load balancer used by the <a href="https://voyagermesh.com/">Voyager ingress controller</a> which, by design, uses a load balancer per ingress (<a href="https://github.com/kubernetes/ingress-nginx/issues/1539#issuecomment-337352587">more details in here</a>). Say you have 10 services you need to expose, you will use 10 ingresses and GCP will create 10 L4 load balancers.</p>
+<p>Regarding the GCP pricing, there is a flat rate for the first 5 forwarding rules (<a href="https://cloud.google.com/vpc/network-pricing#forwarding-rules-pricing-examples">billed separately for regional and global forwarding rules</a>) and additional rules are billed on top of that. That means we should optimize our setup to use a minimum amount of load balancers, ideally up to 5.</p>
+<p>We could think about stacking everything in a single ingress to have a only one load balancer in GCP and minimize costs doing so, but, in my ideal world, I would like to manage decoupled deployments so I don&rsquo;t want to edit a central ingress with all the &ldquo;path-service&rdquo; mappings.</p>
+<p>We address those concerns using <a href="https://github.com/traefik/traefik">Traefik</a>.
+Indeed, we can expose Traefik behind a L7 load balancer and use its CRDs to specify the ingress routes.
+We&rsquo;ll see next how it looks like.</p>
+<h3 id="deploying-traefik">Deploying Traefik</h3>
+<p>The traefik helm chart can be used to deploy it in a GKE cluster, however, some modifications need to be made to have a proper setup using a Google HTTP Load Balancer.</p>
+<p>First, we need to modify the pod template file to override the liveness/readiness probes port because Google automatically creates healthchecks based on those probes ports (<a href="https://github.com/traefik/traefik-helm-chart/issues/339">Hopefully this will be available by default in the official helm chart</a>).</p>
+<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff"><span class="gh">diff --git a/traefik/templates/_podtemplate.tpl b/traefik/templates/_podtemplate.tpl
+</span><span class="gh">index f401d26..3d5ddc5 100644
+</span><span class="gh"></span><span class="gd">--- a/traefik/templates/_podtemplate.tpl
+</span><span class="gd"></span><span class="gi">+++ b/traefik/templates/_podtemplate.tpl
+</span><span class="gi"></span><span class="gu">@@ -38,7 +38,7 @@
+</span><span class="gu"></span>         readinessProbe:
+           httpGet:
+             path: /ping
+<span class="gd">-            port: {{ .Values.ports.traefik.port }}
+</span><span class="gd"></span><span class="gi">+            port: {{ default .Values.ports.traefik.port .Values.ports.traefik.healthchecksPort }}
+</span><span class="gi"></span>           failureThreshold: 1
+           initialDelaySeconds: 10
+           periodSeconds: 10
+<span class="gu">@@ -47,7 +47,7 @@
+</span><span class="gu"></span>         livenessProbe:
+           httpGet:
+             path: /ping
+<span class="gd">-            port: {{ .Values.ports.traefik.port }}
+</span><span class="gd"></span><span class="gi">+            port: {{ default .Values.ports.traefik.port .Values.ports.traefik.healthchecksPort }}
+</span><span class="gi"></span>           failureThreshold: 3
+           initialDelaySeconds: 10
+           periodSeconds: 10
+</code></pre></div><p>Then we need to modify the defaults helm values:</p>
+<ul>
+<li>The <code>.service.type</code> value is set to <code>NodePort</code>.</li>
+<li>We override the ping configuration and helthchecksPort</li>
+<li>We can also disable the websecure entrypoint, SSL termination can be done at the Load balancer level.</li>
+</ul>
+<p>This looks like the following:</p>
+<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff"><span class="gh">diff --git a/values.yaml b/values.yaml
+</span><span class="gh">index 1e0e5a9..785a1d3 100644
+</span><span class="gh"></span><span class="gd">--- a/values.yaml
+</span><span class="gd"></span><span class="gi">+++ b/values.yaml
+</span><span class="gi"></span><span class="gu">@@ -183,9 +183,10 @@ globalArguments:
+</span><span class="gu"></span> # Additional arguments to be passed at Traefik&#39;s binary
+ # All available options available on https://docs.traefik.io/reference/static-configuration/cli/
+ ## Use curly braces to pass values: `helm install --set=&#34;additionalArguments={--providers.kubernetesingress.ingressclass=traefik-internal,--log.level=DEBUG}&#34;`
+<span class="gd">-additionalArguments: []
+</span><span class="gd">-#  - &#34;--providers.kubernetesingress.ingressclass=traefik-internal&#34;
+</span><span class="gd">-#  - &#34;--log.level=DEBUG&#34;
+</span><span class="gd"></span><span class="gi">+additionalArguments:
+</span><span class="gi">+  - &#34;--providers.kubernetesingress.ingressclass=traefik&#34;
+</span><span class="gi">+  - &#34;--ping&#34;
+</span><span class="gi">+  - &#34;--ping.entrypoint=web&#34;
+</span><span class="gi"></span>
+ # Environment variables to be passed to Traefik&#39;s binary
+ env: []
+<span class="gu">@@ -214,6 +215,11 @@ ports:
+</span><span class="gu"></span>   # liveness probes, but you can adjust its config to your liking
+   traefik:
+     port: 9000
+<span class="gi">+
+</span><span class="gi">+    # Override the liveness/readiness port. This is useful to integrate traefik
+</span><span class="gi">+    # with an external Load Balancer that performs healthchecks.
+</span><span class="gi">+    healthchecksPort: 8000
+</span><span class="gi">+
+</span><span class="gi"></span>     # Use hostPort if set.
+     # hostPort: 9000
+     #
+<span class="gu">@@ -251,7 +257,7 @@ ports:
+</span><span class="gu"></span>   websecure:
+     port: 8443
+     # hostPort: 8443
+<span class="gd">-    expose: true
+</span><span class="gd"></span><span class="gi">+    expose: false
+</span><span class="gi"></span>     exposedPort: 443
+     # The port protocol (TCP/UDP)
+     protocol: TCP
+<span class="gu">@@ -286,7 +292,7 @@ tlsOptions: {}
+</span><span class="gu"></span> # from.
+ service:
+   enabled: true
+<span class="gd">-  type: LoadBalancer
+</span><span class="gd"></span><span class="gi">+  type: NodePort
+</span><span class="gi"></span>   # Additional annotations (e.g. for cloud provider specific config)
+   annotations: {}
+   # Additional service labels (e.g. for filtering Service by custom labels)
+</code></pre></div><p>Finally, we can add, for example, the following helm template to create a gce ingress for the HTTP Load Balancer.</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">{{- <span class="l">if and .Values.service.enabled (eq .Values.service.type &#34;NodePort&#34;) }}</span><span class="w">
+</span><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">networking.k8s.io/v1beta1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Ingress</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">traefik</span><span class="w">
+</span><span class="w">  </span><span class="nt">annotations</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">kubernetes.io/ingress.class</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;gce&#34;</span><span class="w">
+</span><span class="w">    </span><span class="nt">external-dns.alpha.kubernetes.io/hostname</span><span class="p">:</span><span class="w"> </span>{{<span class="w"> </span><span class="l">.Values.hostname }}</span><span class="w">
+</span><span class="w">    </span><span class="nt">kubernetes.io/ingress.allow-http</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;false&#34;</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">backend</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">serviceName</span><span class="p">:</span><span class="w"> </span>{{<span class="w"> </span><span class="l">template &#34;traefik.fullname&#34; . }}</span><span class="w">
+</span><span class="w">    </span><span class="nt">servicePort</span><span class="p">:</span><span class="w"> </span>{{<span class="w"> </span><span class="l">.Values.ports.web.exposedPort }}</span><span class="w">
+</span><span class="w">  </span><span class="nt">tls</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">secretName</span><span class="p">:</span><span class="w"> </span>{{<span class="w"> </span><span class="l">.Values.certificateSecret }}</span><span class="w">
+</span><span class="w"></span>{{- <span class="l">end }}</span><span class="w">
+</span></code></pre></div><ul>
+<li><code>.Values.hostname</code> could be <code>traefik.example.com</code></li>
+<li><code>.Values.certificateSecret</code> is the secret name containing the TLS certificate generated, for example, with <a href="https://github.com/jetstack/cert-manager/tree/master/deploy/charts/cert-manager">cert-manager</a>.</li>
+</ul>
+<h3 id="using-traefik-in-other-deployments">Using Traefik in other deployments</h3>
+<p>How does this traefik setup look like in pratice?</p>
+<p>First, let&rsquo;s create a <a href="https://github.com/traefik/whoami">whoami</a> deployment.</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Deployment</span><span class="w">
+</span><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">apps/v1</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">whoami</span><span class="w">
+</span><span class="w">  </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">whoami</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="m">1</span><span class="w">
+</span><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">whoami</span><span class="w">
+</span><span class="w">  </span><span class="nt">template</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">whoami</span><span class="w">
+</span><span class="w">    </span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">containous/whoami:v1.5.0</span><span class="w">
+</span><span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">whoami</span><span class="w">
+</span><span class="w">          </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span><span class="w">            </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">web</span><span class="w">
+</span><span class="w">              </span><span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="m">80</span><span class="w">
+</span><span class="w"></span><span class="nn">---</span><span class="w">
+</span><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Service</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">whoami</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l">TCP</span><span class="w">
+</span><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">web</span><span class="w">
+</span><span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">80</span><span class="w">
+</span><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">whoami</span><span class="w">
+</span></code></pre></div><p>Then, using <a href="https://github.com/bitnami/charts/tree/master/bitnami/external-dns">external-dns</a>, we can create a CNAME record that points to traefik and a traefik ingress route to redirect to the whoami service.</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">externaldns.k8s.io/v1alpha1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">DNSEndpoint</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">whoami</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">endpoints</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">dnsName</span><span class="p">:</span><span class="w"> </span><span class="l">whoami.example.com</span><span class="w">
+</span><span class="w">    </span><span class="nt">recordTTL</span><span class="p">:</span><span class="w"> </span><span class="m">300</span><span class="w">
+</span><span class="w">    </span><span class="nt">recordType</span><span class="p">:</span><span class="w"> </span><span class="l">CNAME</span><span class="w">
+</span><span class="w">    </span><span class="nt">targets</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="l">traefik.example.com</span><span class="w">
+</span><span class="w"></span><span class="nn">---</span><span class="w">
+</span><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">traefik.containo.us/v1alpha1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">IngressRoute</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">whoami</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">routes</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Rule</span><span class="w">
+</span><span class="w">    </span><span class="nt">match</span><span class="p">:</span><span class="w"> </span><span class="l">Host(`whoami.example.com`)</span><span class="w">
+</span><span class="w">    </span><span class="nt">services</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">whoami</span><span class="w">
+</span><span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">80</span><span class="w">
+</span></code></pre></div><p>So far so good, let&rsquo;s try it out with a <code>curl https://whoami.example.com</code></p>
+<p>We are supposed to get the following result:</p>
+<pre><code>Hostname: whoami-0
+IP: 127.0.0.1
+IP: 10.40.1.16                # whoami pod IP
+RemoteAddr: 10.40.1.13:47784  # traefik pod IP
+GET / HTTP/1.1
+Host: whoami.example.com
+User-Agent: curl/7.68.0
+Accept: */*
+Accept-Encoding: gzip
+Via: 1.1 google
+X-Client-Data: CgSL6ZsV
+X-Cloud-Trace-Context: 1c5d7...
+X-Forwarded-For: 10.40.1.1
+X-Forwarded-Host: whoami.example.com
+X-Forwarded-Port: 80
+X-Forwarded-Proto: http
+X-Forwarded-Server: traefik-6d6fcbd876-58nvn
+X-Real-Ip: 10.40.1.1
+</code></pre><p>We now have a decoupled setup to expose services in kubernetes deployments, using a single Google Cloud Global HTTP Load balancer through traefik. Yay!</p>
+
+
+        
+          <div class="blog-tags">
+            
+              <a href="https://blog.ttauveron.com/tags/gcp/">gcp</a>&nbsp;
+            
+              <a href="https://blog.ttauveron.com/tags/kubernetes/">kubernetes</a>&nbsp;
+            
+              <a href="https://blog.ttauveron.com/tags/traefik/">traefik</a>&nbsp;
+            
+              <a href="https://blog.ttauveron.com/tags/ingress/">ingress</a>&nbsp;
+            
+          </div>
+        
+
+      </article>
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="d-flex justify-content-center">
+        <p class="credits copyright text-muted">
+          Thibaut Tauveron
+          &nbsp;&bull;&nbsp;&copy;
+            2021
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+  </body>
+</html>
+
