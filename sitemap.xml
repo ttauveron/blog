@@ -13,11 +13,6 @@
   </url>
   
   <url>
-    <loc>https://blog.ttauveron.com/posts/vpn_bash_helper/</loc>
-    <lastmod>2021-04-12T17:20:31+02:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://blog.ttauveron.com/tags/openvpn/</loc>
     <lastmod>2021-04-12T17:20:31+02:00</lastmod>
   </url>
@@ -34,6 +29,11 @@
   
   <url>
     <loc>https://blog.ttauveron.com/</loc>
+    <lastmod>2021-04-12T17:20:31+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.ttauveron.com/posts/vpn_bash_helper/</loc>
     <lastmod>2021-04-12T17:20:31+02:00</lastmod>
   </url>
   

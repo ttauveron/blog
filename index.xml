@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Mon, 12 Apr 2021 17:20:31 +0200</lastBuildDate><atom:link href="https://blog.ttauveron.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>My command line helper for managing openvpn connections</title>
+      <title>Writing an openvpn bash wrapper with completion</title>
       <link>https://blog.ttauveron.com/posts/vpn_bash_helper/</link>
       <pubDate>Mon, 12 Apr 2021 17:20:31 +0200</pubDate>
       
