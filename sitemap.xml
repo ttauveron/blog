@@ -3,6 +3,41 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://blog.ttauveron.com/tags/bash/</loc>
+    <lastmod>2021-04-12T17:20:31+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.ttauveron.com/tags/cli/</loc>
+    <lastmod>2021-04-12T17:20:31+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.ttauveron.com/posts/vpn_bash_helper/</loc>
+    <lastmod>2021-04-12T17:20:31+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.ttauveron.com/tags/openvpn/</loc>
+    <lastmod>2021-04-12T17:20:31+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.ttauveron.com/posts/</loc>
+    <lastmod>2021-04-12T17:20:31+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.ttauveron.com/tags/</loc>
+    <lastmod>2021-04-12T17:20:31+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.ttauveron.com/</loc>
+    <lastmod>2021-04-12T17:20:31+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://blog.ttauveron.com/tags/kubernetes/</loc>
     <lastmod>2021-03-10T00:58:31+01:00</lastmod>
   </url>
@@ -13,22 +48,7 @@
   </url>
   
   <url>
-    <loc>https://blog.ttauveron.com/posts/</loc>
-    <lastmod>2021-03-10T00:58:31+01:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://blog.ttauveron.com/posts/scan-network-k8s-api-server-nmap/</loc>
-    <lastmod>2021-03-10T00:58:31+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.ttauveron.com/tags/</loc>
-    <lastmod>2021-03-10T00:58:31+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.ttauveron.com/</loc>
     <lastmod>2021-03-10T00:58:31+01:00</lastmod>
   </url>
   

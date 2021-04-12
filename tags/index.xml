@@ -5,7 +5,34 @@
     <link>https://blog.ttauveron.com/tags/</link>
     <description>Recent content in Tags on Thibaut Tauveron</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 10 Mar 2021 00:58:31 +0100</lastBuildDate><atom:link href="https://blog.ttauveron.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 12 Apr 2021 17:20:31 +0200</lastBuildDate><atom:link href="https://blog.ttauveron.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>bash</title>
+      <link>https://blog.ttauveron.com/tags/bash/</link>
+      <pubDate>Mon, 12 Apr 2021 17:20:31 +0200</pubDate>
+      
+      <guid>https://blog.ttauveron.com/tags/bash/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cli</title>
+      <link>https://blog.ttauveron.com/tags/cli/</link>
+      <pubDate>Mon, 12 Apr 2021 17:20:31 +0200</pubDate>
+      
+      <guid>https://blog.ttauveron.com/tags/cli/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>openvpn</title>
+      <link>https://blog.ttauveron.com/tags/openvpn/</link>
+      <pubDate>Mon, 12 Apr 2021 17:20:31 +0200</pubDate>
+      
+      <guid>https://blog.ttauveron.com/tags/openvpn/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>kubernetes</title>
       <link>https://blog.ttauveron.com/tags/kubernetes/</link>

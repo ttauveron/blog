@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>openvpn on Thibaut Tauveron</title>
+    <link>https://blog.ttauveron.com/tags/openvpn/</link>
+    <description>Recent content in openvpn on Thibaut Tauveron</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 12 Apr 2021 17:20:31 +0200</lastBuildDate><atom:link href="https://blog.ttauveron.com/tags/openvpn/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>My command line helper for managing openvpn connections</title>
+      <link>https://blog.ttauveron.com/posts/vpn_bash_helper/</link>
+      <pubDate>Mon, 12 Apr 2021 17:20:31 +0200</pubDate>
+      
+      <guid>https://blog.ttauveron.com/posts/vpn_bash_helper/</guid>
+      <description>I&amp;rsquo;m working with multiple openvpn environments in Linux and while I enjoy working with the command line, it can be cumbersome to manage different connections through the openvpn cli.
+My ideal VPN cli would be super simple : connect, disconnect and bash completion for everything.
+As cumbersome + linux often leads to automation, my solution involves a little bit of bash :-)
+Install The following code needs to be sourced. Personally, I&amp;rsquo;ve added it to my .</description>
+    </item>
+    
+  </channel>
+</rss>

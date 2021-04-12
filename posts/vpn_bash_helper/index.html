@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+      <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <meta name="author" content="Thibaut Tauveron"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "Thibaut Tauveron",
+    
+    "url": "https:\/\/blog.ttauveron.com"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/blog.ttauveron.com"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/blog.ttauveron.com",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/blog.ttauveron.com\/posts\/vpn_bash_helper\/",
+          "name": "My command line helper for managing openvpn connections"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "Thibaut Tauveron"
+  },
+  "headline": "My command line helper for managing openvpn connections",
+  "description" : "I\u0026rsquo;m working with multiple openvpn environments in Linux and while I enjoy working with the command line, it can be cumbersome to manage different connections through the openvpn cli.\nMy ideal VPN cli would be super simple : connect, disconnect and bash completion for everything.\nAs cumbersome \u002b linux often leads to automation, my solution involves a little bit of bash :-)\nInstall The following code needs to be sourced. Personally, I\u0026rsquo;ve added it to my .",
+  "inLanguage" : "en",
+  "wordCount":  277 ,
+  "datePublished" : "2021-04-12T17:20:31",
+  "dateModified" : "2021-04-12T17:20:31",
+  "image" : "https:\/\/blog.ttauveron.com",
+  "keywords" : [ "bash, openvpn, cli" ],
+  "mainEntityOfPage" : "https:\/\/blog.ttauveron.com\/posts\/vpn_bash_helper\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/blog.ttauveron.com",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/blog.ttauveron.com",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="My command line helper for managing openvpn connections" />
+<meta property="og:description" content="An openvpn bash wrapper with completion">
+<meta property="og:image" content="https://gitlab.com/thibaut.tauveron/images/-/raw/master/headers/openvpn.png" />
+<meta name="publish_date" property="og:publish_date" content='2021-04-12T17:20:31&#43;0200'>
+
+<meta property="og:url" content="https://blog.ttauveron.com/posts/vpn_bash_helper/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Thibaut Tauveron" />
+
+  <meta name="twitter:title" content="My command line helper for managing openvpn connections" />
+  <meta name="twitter:description" content="An openvpn bash wrapper with completion">
+  <meta name="twitter:image" content="https://gitlab.com/thibaut.tauveron/images/-/raw/master/headers/openvpn.png" />
+  <meta name="twitter:card" content="summary" />
+  <link href='https://blog.ttauveron.com/img/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta name="generator" content="Hugo 0.80.0" />
+  <link rel="alternate" href="https://blog.ttauveron.com/index.xml" type="application/rss+xml" title="Thibaut Tauveron">
+  <link rel="stylesheet" href="https://blog.ttauveron.com/fontawesome/css/all.css" />
+  <link rel="stylesheet" href="https://blog.ttauveron.com/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://blog.ttauveron.com/css/syntax.css" />
+  <link rel="stylesheet" href="https://blog.ttauveron.com/css/main.css" />
+
+  </head>
+  <body>
+    
+
+
+<nav class="navbar navbar-custom">
+
+
+    <a class="header-title" href="https://blog.ttauveron.com">Thibaut Tauveron</a>
+    <ul class="list-inline text-center fa-sm header-links">
+
+        <li class="list-inline-item">
+            <a href="https://github.com/ttauveron" title="GitHub">
+                  <span class="fa-stack">
+                    <div class="fab fa-github fa-stack-1x"></div>
+                  </span>
+            </a>
+        </li>
+        <li class="list-inline-item">
+            <a href="https://linkedin.com/in/ttauveron" title="LinkedIn">
+                  <span class="fa-stack">
+                    <div class="fab fa-linkedin fa-stack-1x"></div>
+                  </span>
+            </a>
+        </li>
+        <li class="list-inline-item">
+            <a href="/index.xml" title="RSS">
+              <span class="fa-stack">
+                <div class="fa fa-rss fa-stack-1x"></div>
+              </span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+          <h1>My command line helper for managing openvpn connections</h1>
+          <span class="date">Monday, April 12, 2021</span>
+        <p>I&rsquo;m working with multiple openvpn environments in Linux and while I enjoy working with the command line, it can be cumbersome to manage different connections through the openvpn cli.</p>
+<p>My ideal VPN cli would be super simple : connect, disconnect and bash completion for everything.</p>
+<p>As <code>cumbersome + linux</code> often leads to <code>automation</code>, my solution involves a little bit of bash :-)</p>
+<h3 id="install">Install</h3>
+<p>The following code needs to be sourced.
+Personally, I&rsquo;ve added it to my .bashrc.</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1">### VPN helper</span>
+<span class="c1"># vpn autocompletion</span>
+_vpn_complete<span class="o">()</span>
+<span class="o">{</span>
+  <span class="nb">local</span> cur prev
+  <span class="nv">COMPREPLY</span><span class="o">=()</span>
+  <span class="nv">cur</span><span class="o">=</span><span class="si">${</span><span class="nv">COMP_WORDS</span><span class="p">[COMP_CWORD]</span><span class="si">}</span>
+  <span class="nv">prev</span><span class="o">=</span><span class="si">${</span><span class="nv">COMP_WORDS</span><span class="p">[COMP_CWORD-1]</span><span class="si">}</span>
+  <span class="k">if</span> <span class="o">[</span> <span class="nv">$COMP_CWORD</span> -eq <span class="m">1</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+    <span class="nv">COMPREPLY</span><span class="o">=(</span> <span class="k">$(</span><span class="nb">compgen</span> -W <span class="s2">&#34;connect disconnect killall&#34;</span> -- <span class="nv">$cur</span><span class="k">)</span> <span class="o">)</span>
+  <span class="k">elif</span> <span class="o">[</span> <span class="nv">$COMP_CWORD</span> -eq <span class="m">2</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+    <span class="k">case</span> <span class="s2">&#34;</span><span class="nv">$prev</span><span class="s2">&#34;</span> in
+      <span class="s2">&#34;connect&#34;</span><span class="o">)</span>
+	<span class="nv">COMPREPLY</span><span class="o">=(</span> <span class="k">$(</span><span class="nb">compgen</span> -W <span class="s2">&#34;</span><span class="k">$(</span>find ~/.vpn/ -name *.ovpn  -printf <span class="s2">&#34;%f\n&#34;</span><span class="k">)</span><span class="s2">&#34;</span> -- <span class="nv">$cur</span><span class="k">)</span> <span class="o">)</span>
+	<span class="p">;;</span>
+      <span class="s2">&#34;disconnect&#34;</span><span class="o">)</span>
+	<span class="nv">COMPREPLY</span><span class="o">=(</span> <span class="k">$(</span><span class="nb">compgen</span> -W <span class="s2">&#34;</span><span class="k">$(</span>ls /tmp/openvpn_pids 2&gt; /dev/null<span class="k">)</span><span class="s2">&#34;</span> -- <span class="nv">$cur</span><span class="k">)</span> <span class="o">)</span>
+	<span class="p">;;</span>
+      *<span class="o">)</span>
+	<span class="p">;;</span>
+    <span class="k">esac</span>
+  <span class="k">fi</span>
+  <span class="k">return</span> <span class="m">0</span>
+<span class="o">}</span>
+
+<span class="nb">complete</span> -F _vpn_complete vpn
+
+<span class="c1"># vpn helper script</span>
+vpn<span class="o">()</span> <span class="o">{</span>
+    <span class="nv">ovpn_pid_dir</span><span class="o">=</span>/tmp/openvpn_pids
+    <span class="nv">ovpn_filename</span><span class="o">=</span><span class="nv">$2</span>
+    <span class="nv">ovpn_pid_file</span><span class="o">=</span><span class="nv">$ovpn_pid_dir</span>/<span class="nv">$2</span>
+    mkdir -p <span class="nv">$ovpn_pid_dir</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$1</span><span class="s2">&#34;</span> <span class="o">==</span> <span class="s2">&#34;connect&#34;</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">[</span> -f ~/.vpn/<span class="nv">$ovpn_filename</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+	    sudo openvpn --config ~/.vpn/<span class="nv">$ovpn_filename</span> --daemon --writepid <span class="nv">$ovpn_pid_file</span>
+    <span class="k">elif</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$1</span><span class="s2">&#34;</span> <span class="o">==</span> <span class="s2">&#34;disconnect&#34;</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">[</span> -f <span class="nv">$ovpn_pid_file</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+	    sudo <span class="nb">kill</span> <span class="k">$(</span>cat <span class="nv">$ovpn_pid_file</span><span class="k">)</span> <span class="o">&amp;&amp;</span> sudo rm <span class="nv">$ovpn_pid_file</span>
+    <span class="k">elif</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$1</span><span class="s2">&#34;</span> <span class="o">==</span> <span class="s2">&#34;killall&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+	    sudo killall openvpn 2&gt; /dev/null <span class="o">&amp;&amp;</span> sudo rm <span class="nv">$ovpn_pid_dir</span>/*
+    <span class="k">else</span>
+	    <span class="nb">echo</span> <span class="s2">&#34;Usage : </span>$<span class="s2"> vpn [connect|disconnect] ovpn_file&#34;</span>
+	    <span class="k">return</span> <span class="m">1</span>
+    <span class="k">fi</span>
+<span class="o">}</span>
+</code></pre></div><h3 id="usage">Usage</h3>
+<p>To use this, we need to first create a <code>.vpn</code> directory in our HOME.</p>
+<p>Then, we put our .ovpn files in <code>$HOME/.vpn/</code>.</p>
+<p>Finally, we enjoy the bash completion after typing <code>vpn [...]</code>!</p>
+<p>Example commands:</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">vpn connect config.ovpn
+vpn disconnect config.ovpn <span class="c1"># or vpn killall</span>
+</code></pre></div>
+
+        
+          <div class="blog-tags">
+            
+              <a href="https://blog.ttauveron.com/tags/bash/">bash</a>&nbsp;
+            
+              <a href="https://blog.ttauveron.com/tags/openvpn/">openvpn</a>&nbsp;
+            
+              <a href="https://blog.ttauveron.com/tags/cli/">cli</a>&nbsp;
+            
+          </div>
+        
+
+      </article>
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="d-flex justify-content-center">
+        <p class="credits copyright text-muted">
+          Thibaut Tauveron
+          &nbsp;&bull;&nbsp;&copy;
+            2021
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+  </body>
+</html>
+
