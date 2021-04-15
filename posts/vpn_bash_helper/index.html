@@ -99,46 +99,40 @@
   <body>
     
 
+<nav>
+  <div class="navbar-custom">
+    <div class="container">
+      <div class="row post-preview">
+        <div class="col-6 d-flex align-items-center me-auto">
+          <a class="header-title" href="https://blog.ttauveron.com">Thibaut Tauveron</a>
+        </div>
+        <div class="col-6 d-flex align-items-end flex-column">
+      <span class="fa-sm">
+        <a href="https://github.com/ttauveron" title="GitHub" class="fa-stack">
+          <div class="fab fa-github fa-stack-1x"></div>
+        </a>
+        <a href="https://linkedin.com/in/ttauveron" title="LinkedIn" class="fa-stack">
+          <div class="fab fa-linkedin fa-stack-1x"></div>
+        </a>
+        <a href="/index.xml" title="RSS" class="fa-stack">
+          <div class="fa fa-rss fa-stack-1x"></div>
+        </a>
+      </span>
+        </div>
 
-<nav class="navbar navbar-custom">
-
-
-    <a class="header-title" href="https://blog.ttauveron.com">Thibaut Tauveron</a>
-    <ul class="list-inline text-center fa-sm header-links">
-
-        <li class="list-inline-item">
-            <a href="https://github.com/ttauveron" title="GitHub">
-                  <span class="fa-stack">
-                    <div class="fab fa-github fa-stack-1x"></div>
-                  </span>
-            </a>
-        </li>
-        <li class="list-inline-item">
-            <a href="https://linkedin.com/in/ttauveron" title="LinkedIn">
-                  <span class="fa-stack">
-                    <div class="fab fa-linkedin fa-stack-1x"></div>
-                  </span>
-            </a>
-        </li>
-        <li class="list-inline-item">
-            <a href="/index.xml" title="RSS">
-              <span class="fa-stack">
-                <div class="fa fa-rss fa-stack-1x"></div>
-              </span>
-            </a>
-        </li>
-    </ul>
+      </div>
+    </div>
+  </div>
 </nav>
 
 
     
 <div class="container" role="main">
   <div class="row">
-    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-      <article role="main" class="blog-post">
-          <h1>Writing an openvpn bash wrapper with completion</h1>
-          <span class="date">Monday, April 12, 2021</span>
-        <p>I&rsquo;m working with multiple openvpn environments in Linux and while I enjoy working with the command line, it can be cumbersome to manage different connections through the openvpn cli.</p>
+    <article role="main" class="blog-post">
+      <h1>Writing an openvpn bash wrapper with completion</h1>
+      <span class="date">Monday, April 12, 2021</span>
+      <p>I&rsquo;m working with multiple openvpn environments in Linux and while I enjoy working with the command line, it can be cumbersome to manage different connections through the openvpn cli.</p>
 <p>My ideal VPN cli would be super simple : connect, disconnect and bash completion for everything.</p>
 <p>As <code>cumbersome + linux</code> often leads to <code>automation</code>, my solution involves a little bit of bash :-)</p>
 <h3 id="install">Install</h3>
@@ -196,21 +190,18 @@ vpn<span class="o">()</span> <span class="o">{</span>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">vpn connect config.ovpn
 vpn disconnect config.ovpn <span class="c1"># or vpn killall</span>
 </code></pre></div>
-
+      
+      <div class="blog-tags">
         
-          <div class="blog-tags">
-            
-              <a href="https://blog.ttauveron.com/tags/bash/">bash</a>&nbsp;
-            
-              <a href="https://blog.ttauveron.com/tags/openvpn/">openvpn</a>&nbsp;
-            
-              <a href="https://blog.ttauveron.com/tags/cli/">cli</a>&nbsp;
-            
-          </div>
+        <a href="https://blog.ttauveron.com/tags/bash/">bash</a>&nbsp;
         
-
-      </article>
-    </div>
+        <a href="https://blog.ttauveron.com/tags/openvpn/">openvpn</a>&nbsp;
+        
+        <a href="https://blog.ttauveron.com/tags/cli/">cli</a>&nbsp;
+        
+      </div>
+      
+    </article>
   </div>
 </div>
 

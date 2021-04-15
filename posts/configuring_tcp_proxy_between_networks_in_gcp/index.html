@@ -97,46 +97,40 @@
   <body>
     
 
+<nav>
+  <div class="navbar-custom">
+    <div class="container">
+      <div class="row post-preview">
+        <div class="col-6 d-flex align-items-center me-auto">
+          <a class="header-title" href="https://blog.ttauveron.com">Thibaut Tauveron</a>
+        </div>
+        <div class="col-6 d-flex align-items-end flex-column">
+      <span class="fa-sm">
+        <a href="https://github.com/ttauveron" title="GitHub" class="fa-stack">
+          <div class="fab fa-github fa-stack-1x"></div>
+        </a>
+        <a href="https://linkedin.com/in/ttauveron" title="LinkedIn" class="fa-stack">
+          <div class="fab fa-linkedin fa-stack-1x"></div>
+        </a>
+        <a href="/index.xml" title="RSS" class="fa-stack">
+          <div class="fa fa-rss fa-stack-1x"></div>
+        </a>
+      </span>
+        </div>
 
-<nav class="navbar navbar-custom">
-
-
-    <a class="header-title" href="https://blog.ttauveron.com">Thibaut Tauveron</a>
-    <ul class="list-inline text-center fa-sm header-links">
-
-        <li class="list-inline-item">
-            <a href="https://github.com/ttauveron" title="GitHub">
-                  <span class="fa-stack">
-                    <div class="fab fa-github fa-stack-1x"></div>
-                  </span>
-            </a>
-        </li>
-        <li class="list-inline-item">
-            <a href="https://linkedin.com/in/ttauveron" title="LinkedIn">
-                  <span class="fa-stack">
-                    <div class="fab fa-linkedin fa-stack-1x"></div>
-                  </span>
-            </a>
-        </li>
-        <li class="list-inline-item">
-            <a href="/index.xml" title="RSS">
-              <span class="fa-stack">
-                <div class="fa fa-rss fa-stack-1x"></div>
-              </span>
-            </a>
-        </li>
-    </ul>
+      </div>
+    </div>
+  </div>
 </nav>
 
 
     
 <div class="container" role="main">
   <div class="row">
-    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-      <article role="main" class="blog-post">
-          <h1>Configuring a TCP proxy between networks in GCP</h1>
-          <span class="date">Monday, February 8, 2021</span>
-        <p>I worked on an interesting challenge recently and I thought it would be nice to write a blog post about it!</p>
+    <article role="main" class="blog-post">
+      <h1>Configuring a TCP proxy between networks in GCP</h1>
+      <span class="date">Monday, February 8, 2021</span>
+      <p>I worked on an interesting challenge recently and I thought it would be nice to write a blog post about it!</p>
 <p>A little bit of context first, there are two Google Cloud projects (which could be in two different organizations) and each one
 of those have their own network.
 A client in Project A needs to access an API in project B but this API is not publicly exposed for security reasons.</p>
@@ -225,21 +219,18 @@ Also, we could have other frontend/backend entries to route TCP the other way ar
 decide what goes where.</p>
 <p>That setup feels very manual&hellip; but this could be done with Ansible as a second step!</p>
 
-
+      
+      <div class="blog-tags">
         
-          <div class="blog-tags">
-            
-              <a href="https://blog.ttauveron.com/tags/gcp/">gcp</a>&nbsp;
-            
-              <a href="https://blog.ttauveron.com/tags/haproxy/">haproxy</a>&nbsp;
-            
-              <a href="https://blog.ttauveron.com/tags/vpc/">vpc</a>&nbsp;
-            
-          </div>
+        <a href="https://blog.ttauveron.com/tags/gcp/">gcp</a>&nbsp;
         
-
-      </article>
-    </div>
+        <a href="https://blog.ttauveron.com/tags/haproxy/">haproxy</a>&nbsp;
+        
+        <a href="https://blog.ttauveron.com/tags/vpc/">vpc</a>&nbsp;
+        
+      </div>
+      
+    </article>
   </div>
 </div>
 

@@ -76,6 +76,7 @@
 
 <meta property="og:title" content="Deploy traefik in GKE using (L7) Google HTTP/S Load balancer" />
 <meta property="og:description" content="Improving global latency and potentially saving costs">
+<meta property="og:image" content="https://gitlab.com/thibaut.tauveron/images/-/raw/master/headers/traefik-lb.png" />
 <meta name="publish_date" property="og:publish_date" content='2021-02-15T00:00:00Z'>
 
 <meta property="og:url" content="https://blog.ttauveron.com/posts/traefik_behind_google_l7_load_balancer/" />
@@ -84,6 +85,7 @@
 
   <meta name="twitter:title" content="Deploy traefik in GKE using (L7) Google HTTP/S Load balancer" />
   <meta name="twitter:description" content="Improving global latency and potentially saving costs">
+  <meta name="twitter:image" content="https://gitlab.com/thibaut.tauveron/images/-/raw/master/headers/traefik-lb.png" />
   <meta name="twitter:card" content="summary" />
   <link href='https://blog.ttauveron.com/img/favicon.ico' rel='icon' type='image/x-icon'/>
   <meta name="generator" content="Hugo 0.80.0" />
@@ -97,50 +99,40 @@
   <body>
     
 
+<nav>
+  <div class="navbar-custom">
+    <div class="container">
+      <div class="row post-preview">
+        <div class="col-6 d-flex align-items-center me-auto">
+          <a class="header-title" href="https://blog.ttauveron.com">Thibaut Tauveron</a>
+        </div>
+        <div class="col-6 d-flex align-items-end flex-column">
+      <span class="fa-sm">
+        <a href="https://github.com/ttauveron" title="GitHub" class="fa-stack">
+          <div class="fab fa-github fa-stack-1x"></div>
+        </a>
+        <a href="https://linkedin.com/in/ttauveron" title="LinkedIn" class="fa-stack">
+          <div class="fab fa-linkedin fa-stack-1x"></div>
+        </a>
+        <a href="/index.xml" title="RSS" class="fa-stack">
+          <div class="fa fa-rss fa-stack-1x"></div>
+        </a>
+      </span>
+        </div>
 
-<nav class="navbar navbar-custom">
-
-
-    <a class="header-title" href="https://blog.ttauveron.com">Thibaut Tauveron</a>
-    <ul class="list-inline text-center fa-sm header-links">
-
-        <li class="list-inline-item">
-            <a href="https://github.com/ttauveron" title="GitHub">
-                  <span class="fa-stack">
-                    <div class="fab fa-github fa-stack-1x"></div>
-                  </span>
-            </a>
-        </li>
-        <li class="list-inline-item">
-            <a href="https://linkedin.com/in/ttauveron" title="LinkedIn">
-                  <span class="fa-stack">
-                    <div class="fab fa-linkedin fa-stack-1x"></div>
-                  </span>
-            </a>
-        </li>
-        <li class="list-inline-item">
-            <a href="/index.xml" title="RSS">
-              <span class="fa-stack">
-                <div class="fa fa-rss fa-stack-1x"></div>
-              </span>
-            </a>
-        </li>
-    </ul>
+      </div>
+    </div>
+  </div>
 </nav>
 
 
     
 <div class="container" role="main">
   <div class="row">
-    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-      <article role="main" class="blog-post">
-          <h1>Deploy traefik in GKE using (L7) Google HTTP/S Load balancer</h1>
-          <span class="date">Monday, February 15, 2021</span>
-        <figure>
-    <img src="https://docs.google.com/presentation/d/1TodLiLoCs7IIwpq5713WEgmKiFkgTRCo4M5NvduWLlk/export/jpeg?id=1TodLiLoCs7IIwpq5713WEgmKiFkgTRCo4M5NvduWLlk&amp;pageid=p" width="800px"/> 
-</figure>
-
-<h3 id="using-google-load-balancers-in-gke">Using Google Load Balancers in GKE</h3>
+    <article role="main" class="blog-post">
+      <h1>Deploy traefik in GKE using (L7) Google HTTP/S Load balancer</h1>
+      <span class="date">Monday, February 15, 2021</span>
+      <h3 id="using-google-load-balancers-in-gke">Using Google Load Balancers in GKE</h3>
 <p>Google Cloud proposes multiple types of load balancers and we can use those in GKE.</p>
 <p>Usually, the first thing we do in GKE when we need to expose a service is to set its type to <code>type: LoadBalancer</code>. Under the hood, GCP automatically creates a Regional External TCP/UDP Network Load Balancer (L4) that gives us an IP address in Kubernetes to reach our service.</p>
 <p>This LoadBalancer is flexible as we can expose TCP services such as ssh (used with git for example) or jnlp ports for Jenkins agents.
@@ -193,6 +185,10 @@ The Identity-Aware Proxy allows to restrict HTTP/S access to a list of users/gro
 <p>We can address those concerns using <a href="https://github.com/traefik/traefik">Traefik</a>.
 Indeed, we can expose Traefik behind a L7 load balancer and use its CRDs to specify the ingress routes.
 We&rsquo;ll see next how it looks like.</p>
+<figure>
+    <img src="https://gitlab.com/thibaut.tauveron/images/-/raw/master/traefik.png" width="800px"/> 
+</figure>
+
 <h3 id="deploying-traefik">Deploying Traefik</h3>
 <p>The traefik helm chart can be used to deploy it in a GKE cluster, however, some modifications need to be made to have a proper setup using a Google HTTP Load Balancer.</p>
 <p>First, we need to modify the pod template file to override the liveness/readiness probes port because Google automatically creates healthchecks based on those probes ports (<a href="https://github.com/traefik/traefik-helm-chart/issues/339">Hopefully this will be available by default in the official helm chart</a>).</p>
@@ -377,23 +373,20 @@ X-Forwarded-Server: traefik-6d6fcbd876-58nvn
 X-Real-Ip: 10.40.1.1
 </code></pre><p>We now have a decoupled setup to expose services in kubernetes deployments, using a single Google Cloud Global HTTP Load balancer through traefik. Yay!</p>
 
-
+      
+      <div class="blog-tags">
         
-          <div class="blog-tags">
-            
-              <a href="https://blog.ttauveron.com/tags/gcp/">gcp</a>&nbsp;
-            
-              <a href="https://blog.ttauveron.com/tags/kubernetes/">kubernetes</a>&nbsp;
-            
-              <a href="https://blog.ttauveron.com/tags/traefik/">traefik</a>&nbsp;
-            
-              <a href="https://blog.ttauveron.com/tags/ingress/">ingress</a>&nbsp;
-            
-          </div>
+        <a href="https://blog.ttauveron.com/tags/gcp/">gcp</a>&nbsp;
         
-
-      </article>
-    </div>
+        <a href="https://blog.ttauveron.com/tags/kubernetes/">kubernetes</a>&nbsp;
+        
+        <a href="https://blog.ttauveron.com/tags/traefik/">traefik</a>&nbsp;
+        
+        <a href="https://blog.ttauveron.com/tags/ingress/">ingress</a>&nbsp;
+        
+      </div>
+      
+    </article>
   </div>
 </div>
 

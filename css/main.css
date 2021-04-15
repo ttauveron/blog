@@ -4,11 +4,7 @@ body {
     font-family: 'Asap', sans-serif;
     font-size: 18px;
     color: #404040;
-    position: relative;
     background: #FFF;
-    display: flex;
-    flex-flow: column;
-    height: 100vh;
 }
 
 .container[role=main] {
@@ -17,40 +13,23 @@ body {
     flex: 1 0 auto;
 }
 
+.container {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 a.header-title {
     font-weight: 800;
     font-size: 18px;
-    line-height: 20px;
     text-decoration: none;
-    position: absolute;
-    top: 50%;
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
-    left: 5%;
-}
-
-.header-links {
-    display: inline-block;
-    position: absolute;
-    top: 50%;
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
-    right: 2%;
 }
 
 article {
-    padding: 20px 0;
-}
-
-@media only screen and (max-width: 767px) {
-    .container[role=main] {
-        margin-left: 0;
-        margin-right: 0;
-    }
+    padding: 0 0 10px 0;
 }
 
 p a {
-    /* text-decoration: underline */
     color: #008AFF;
 }
 
@@ -177,25 +156,10 @@ img {
 
 .navbar-custom {
     background: #F5F5F5;
-    padding: 20px 0;
+    padding: 5px 0;
     border-bottom: 1px solid #EAEAEA;
     font-family: 'Asap', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
-
-
-@media only screen and (min-width: 768px) {
-    .navbar-custom {
-        padding: 20px 0;
-        -webkit-transition: background .5s ease-in-out, padding .5s ease-in-out;
-        -moz-transition: background .5s ease-in-out, padding .5s ease-in-out;
-        transition: background .5s ease-in-out, padding .5s ease-in-out;
-    }
-
-    .navbar-custom.top-nav-short {
-        padding: 0;
-    }
-}
-
 
 footer {
     padding: 30px 0;
@@ -241,17 +205,6 @@ footer .theme-by {
 
 /* --- Post preview --- */
 
-.post-preview {
-    padding: 20px 0;
-
-}
-
-@media only screen and (min-width: 768px) {
-    .post-preview {
-        padding: 35px 0;
-    }
-}
-
 .post-preview:last-child {
     border-bottom: 0;
 }
@@ -268,12 +221,13 @@ footer .theme-by {
 }
 
 .post-preview .post-title {
-    font-size: 30px;
+    font-size: 20px;
     margin-top: 0;
 }
 
 .post-preview .post-subtitle {
     margin: 0;
+    color: #808080;
     font-weight: 300;
     margin-bottom: 10px;
 }
@@ -331,7 +285,7 @@ footer .theme-by {
 
 @media only screen and (min-width: 768px) {
     .post-preview .post-title {
-        font-size: 36px;
+        font-size: 20px;
     }
 }
 
