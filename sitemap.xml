@@ -3,6 +3,51 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://blog.ttauveron.com/tags/java/</loc>
+    <lastmod>2021-08-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.ttauveron.com/tags/jenkins/</loc>
+    <lastmod>2021-08-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.ttauveron.com/tags/oracle/</loc>
+    <lastmod>2021-08-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.ttauveron.com/posts/</loc>
+    <lastmod>2021-08-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.ttauveron.com/tags/siebel/</loc>
+    <lastmod>2021-08-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.ttauveron.com/tags/</loc>
+    <lastmod>2021-08-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.ttauveron.com/</loc>
+    <lastmod>2021-08-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.ttauveron.com/posts/siebel_test_automation/</loc>
+    <lastmod>2021-08-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.ttauveron.com/tags/windows/</loc>
+    <lastmod>2021-08-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://blog.ttauveron.com/tags/bash/</loc>
     <lastmod>2021-04-12T17:20:31+02:00</lastmod>
   </url>
@@ -14,21 +59,6 @@
   
   <url>
     <loc>https://blog.ttauveron.com/tags/openvpn/</loc>
-    <lastmod>2021-04-12T17:20:31+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.ttauveron.com/posts/</loc>
-    <lastmod>2021-04-12T17:20:31+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.ttauveron.com/tags/</loc>
-    <lastmod>2021-04-12T17:20:31+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.ttauveron.com/</loc>
     <lastmod>2021-04-12T17:20:31+02:00</lastmod>
   </url>
   

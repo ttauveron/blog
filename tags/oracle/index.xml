@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>oracle on Thibaut Tauveron</title>
+    <link>https://blog.ttauveron.com/tags/oracle/</link>
+    <description>Recent content in oracle on Thibaut Tauveron</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 07 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.ttauveron.com/tags/oracle/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Tinkering with Siebel Test Automation</title>
+      <link>https://blog.ttauveron.com/posts/siebel_test_automation/</link>
+      <pubDate>Sat, 07 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.ttauveron.com/posts/siebel_test_automation/</guid>
+      <description>I have recently been helping a Swedish insurance company to improve their DevOps capabilities. Like many other large companies, they are using an Oracle product called Siebel as their CRM and one of the challenges is to introduce smoke testing through test automation for Siebel.
+Oracle provides different tools to orchestrate this test automation in Siebel and this article has been a great resource for me to understand in more detail how it works.</description>
+    </item>
+    
+  </channel>
+</rss>

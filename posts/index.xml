@@ -5,7 +5,17 @@
     <link>https://blog.ttauveron.com/posts/</link>
     <description>Recent content in Posts on Thibaut Tauveron</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 12 Apr 2021 17:20:31 +0200</lastBuildDate><atom:link href="https://blog.ttauveron.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 07 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.ttauveron.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Tinkering with Siebel Test Automation</title>
+      <link>https://blog.ttauveron.com/posts/siebel_test_automation/</link>
+      <pubDate>Sat, 07 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.ttauveron.com/posts/siebel_test_automation/</guid>
+      <description>I have recently been helping a Swedish insurance company to improve their DevOps capabilities. Like many other large companies, they are using an Oracle product called Siebel as their CRM and one of the challenges is to introduce smoke testing through test automation for Siebel.
+Oracle provides different tools to orchestrate this test automation in Siebel and this article has been a great resource for me to understand in more detail how it works.</description>
+    </item>
+    
     <item>
       <title>Writing an openvpn bash wrapper with completion</title>
       <link>https://blog.ttauveron.com/posts/vpn_bash_helper/</link>

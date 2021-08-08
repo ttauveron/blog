@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+      <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <meta name="author" content="Thibaut Tauveron"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "Thibaut Tauveron",
+    
+    "url": "https:\/\/blog.ttauveron.com"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/blog.ttauveron.com"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/blog.ttauveron.com",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/blog.ttauveron.com\/posts\/siebel_test_automation\/",
+          "name": "Tinkering with siebel test automation"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "Thibaut Tauveron"
+  },
+  "headline": "Tinkering with Siebel Test Automation",
+  "description" : "I have recently been helping a Swedish insurance company to improve their DevOps capabilities. Like many other large companies, they are using an Oracle product called Siebel as their CRM and one of the challenges is to introduce smoke testing through test automation for Siebel.\nOracle provides different tools to orchestrate this test automation in Siebel and this article has been a great resource for me to understand in more detail how it works.",
+  "inLanguage" : "en",
+  "wordCount":  1291 ,
+  "datePublished" : "2021-08-07T00:00:00",
+  "dateModified" : "2021-08-07T00:00:00",
+  "image" : "https:\/\/blog.ttauveron.com",
+  "keywords" : [ "siebel, oracle, jenkins, windows, java" ],
+  "mainEntityOfPage" : "https:\/\/blog.ttauveron.com\/posts\/siebel_test_automation\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/blog.ttauveron.com",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/blog.ttauveron.com",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="Tinkering with Siebel Test Automation" />
+<meta property="og:description" content="Reverse engineering Siebel test automation Jenkins plugin to run the tests from any other automation tool">
+<meta property="og:image" content="https://gitlab.com/thibaut.tauveron/images/-/raw/master/header/siebel-jenkins.png" />
+<meta name="publish_date" property="og:publish_date" content='2021-08-07T00:00:00Z'>
+
+<meta property="og:url" content="https://blog.ttauveron.com/posts/siebel_test_automation/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Thibaut Tauveron" />
+
+  <meta name="twitter:title" content="Tinkering with Siebel Test Automation" />
+  <meta name="twitter:description" content="Reverse engineering Siebel test automation Jenkins plugin to run the tests from any other automation tool">
+  <meta name="twitter:image" content="https://gitlab.com/thibaut.tauveron/images/-/raw/master/header/siebel-jenkins.png" />
+  <meta name="twitter:card" content="summary" />
+  <link href='https://blog.ttauveron.com/img/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta name="generator" content="Hugo 0.80.0" />
+  <link rel="alternate" href="https://blog.ttauveron.com/index.xml" type="application/rss+xml" title="Thibaut Tauveron">
+  <link rel="stylesheet" href="https://blog.ttauveron.com/fontawesome/css/all.css" />
+  <link rel="stylesheet" href="https://blog.ttauveron.com/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://blog.ttauveron.com/css/syntax.css" />
+  <link rel="stylesheet" href="https://blog.ttauveron.com/css/main.css" />
+
+  </head>
+  <body>
+    
+
+<nav>
+  <div class="navbar-custom">
+    <div class="container">
+      <div class="row post-preview">
+        <div class="col-6 d-flex align-items-center me-auto">
+          <a class="header-title" href="https://blog.ttauveron.com">Thibaut Tauveron</a>
+        </div>
+        <div class="col-6 d-flex align-items-end flex-column">
+      <span class="fa-sm">
+        <a href="https://github.com/ttauveron" title="GitHub" class="fa-stack">
+          <div class="fab fa-github fa-stack-1x"></div>
+        </a>
+        <a href="https://linkedin.com/in/ttauveron" title="LinkedIn" class="fa-stack">
+          <div class="fab fa-linkedin fa-stack-1x"></div>
+        </a>
+        <a href="/index.xml" title="RSS" class="fa-stack">
+          <div class="fa fa-rss fa-stack-1x"></div>
+        </a>
+      </span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <article role="main" class="blog-post">
+      <h1>Tinkering with Siebel Test Automation</h1>
+      <span class="date">Saturday, August 7, 2021</span>
+      <p>I have recently been helping a Swedish insurance company to improve their DevOps capabilities.
+Like many other large companies, they are using an Oracle product called <a href="https://www.oracle.com/cx/siebel/">Siebel</a> as their CRM and one of the challenges is to introduce smoke testing through test automation for Siebel.</p>
+<p>Oracle provides different tools to orchestrate this test automation in Siebel and <a href="https://www.boxfusionconsulting.com/article/getting-started-with-siebel-test-automation">this article</a> has been a great resource for me to understand in more detail how it works.</p>
+<h3 id="recording-a-functional-test">Recording a functional test</h3>
+<p>First, we can use the Siebel Usage Pattern Tracking framework (UPT).
+This is a feature in Siebel which allows to record user actions in the Siebel web interface and to replay those later on.
+The article I&rsquo;ve been referring to gives more details on that and how to use it.
+It is important to note that the <code>SWECmd=AutoOn</code> parameter needs to be added to the URL in order to have the recording menu displayed, for example : <code>https://my_siebel_instance/siebel/app/fins/sve?SWECmd=AutoOn</code></p>
+<p>Then to replay tests, the Desktop Integration Siebel Agent (DISA) must be installed in the computer responsible for running tests.</p>
+<h3 id="running-the-first-test-manually">Running the first test manually</h3>
+<p>Let&rsquo;s first record something with UPT and try to replay it.
+There will likely be some configuration required on our local DISA, I personally had to do the following to make it work :</p>
+<ul>
+<li>In the <code>C:\DISA\DesktopIntSiebelAgent\config.properties</code> file, adding the Siebel FQDN to the <code>allowList</code>.</li>
+<li>In the <code>C:\DISA\DesktopIntSiebelAgent\plugins\SiebelTestAutomation\Drivers</code> directory, adding the <a href="https://sites.google.com/a/chromium.org/chromedriver/downloads">chromedriver</a>.</li>
+<li>If it doesn&rsquo;t work, we can have a look in the log file in <code>C:\DISA\DesktopIntSiebelAgent\plugins\SiebelTestAutomation</code>. One of the issues I encountered was that the chrome driver version wasn&rsquo;t the same as my chrome browser, which was clearly outlined in the logs.</li>
+</ul>
+<p>Then, if we are good to go, we can run <code>C:\DISA\DesktopIntSiebelAgent\disa.exe</code> and playback the tests from Siebel, Chrome will open and replay the previously recorded actions through Siebel&rsquo;s web interface.</p>
+<h3 id="configuring-tests-in-siebel">Configuring tests in Siebel</h3>
+<p>First, there is some work to be done in Siebel.
+In the list of recorded scripts, we can select the one we want to execute and click &ldquo;Import&rdquo;.
+Then, let&rsquo;s go to the <code>Version</code> tab through the sitemap to configure the following steps :</p>
+<ul>
+<li>Verify that the recorded script we just imported is present in the <code>Test Script</code> menu.</li>
+<li>Create a Test Set in the <code>Test Set</code> menu and add the previous test script in this set.</li>
+<li>Create a Master Suite in the <code>Master Suite</code> and add the previous test set in this suite.</li>
+<li>Go to <code>Automation execution configuration</code> and schedule a test execution :
+<ul>
+<li>Click on the &ldquo;+&rdquo; icon, fill in the Master Suite to be executed, the application version and the schedule date to &ldquo;now&rdquo; for example, then, save with &ldquo;Ctrl-S&rdquo;</li>
+<li>Fill in the Server information. I personally had to change application type to <code>Desktop_Chrome</code> and fill in the URL (<code>https://my_siebel_instance/siebel/app/fins/sve</code>).</li>
+<li>Finally, fill in the User list with, for example, username: SADMIN and password, and click &ldquo;Schedule driving&rdquo;.</li>
+<li>Some files will be generated at the bottom in the appendices and the test automation is ready to be run.</li>
+</ul>
+</li>
+</ul>
+<h3 id="automating-test-execution">Automating test execution</h3>
+<p>Oracle provides <a href="https://docs.oracle.com/cd/F14158_13/books/TestGuide/siebel-test-automation-execution.html#siebel-test-automation-execution">some guidance</a>
+to setup a Jenkins server in order to run the tests automatically.
+They provide a Jenkins plugin called <code>STE.hpi</code>, available in the Siebel Server&rsquo;s plugins directory.
+However, Oracle only provides a guide for Jenkins.</p>
+<p>At a high level, it works like the following :
+<figure>
+    <img src="https://docs.google.com/presentation/d/1D98EuAAxAbG4xLZBvuQTCeRzTfZS8kdswHceomGNvRo/export/jpeg?id=1D98EuAAxAbG4xLZBvuQTCeRzTfZS8kdswHceomGNvRo&amp;pageid=p" width="100%"/> 
+</figure>
+</p>
+<p>First, a tester needs to schedule a test execution in the <code>Automation Execution Configurations</code> menu from the Siebel web interface.
+When the schedule date is reached, the Jenkins pipeline, containing a Siebel test execution step, can be triggered.
+It will request a RUN-ID from the Siebel REST API and execute the corresponding tests through browser automation with the Chrome driver for example.
+DISA can be installed directly on the Jenkins master or on a separate machine connected to Jenkins as a build agent.</p>
+<p>This is where things get a little trickier for me : in my organization, pipelines were chosen to be standardized in Azure DevOps.
+Using Jenkins in that case adds complexity and maintenance effort as it&rsquo;s not a supported tool internally.</p>
+<p>Ok, time to hack. Let&rsquo;s look into this Jenkins plugin using a <a href="http://java-decompiler.github.io/">Java decompiler</a> to check what they are doing.</p>
+<p>Here are the interesting parts :</p>
+<p>In the <code>WEB-INF\classes\com\oracle\siebel\jenkins\BuildStepCommandInterpreter\config.jelly</code> file :</p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">f:entry</span> <span class="na">title</span><span class="o">=</span><span class="s">&#34;Command&#34;</span> <span class="na">field</span><span class="o">=</span><span class="s">&#34;text&#34;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">f:textarea</span> 
+    <span class="na">style</span><span class="o">=</span><span class="s">&#34;background-color:#f0f0f0; font-size:13px; font-family:courier&#34;</span> 
+    <span class="na">readonly</span><span class="o">=</span><span class="s">&#34;readonly&#34;</span> 
+    <span class="na">value</span><span class="o">=</span><span class="s">&#34;java -jar %DISA_DIR%\DesktopIntSiebelAgent\plugins\SiebelTestAutomation\Framework\KWDPresetup.jar&#34;</span><span class="p">/&gt;</span>
+<span class="p">&lt;/</span><span class="nt">f:entry</span><span class="p">&gt;</span>
+</code></pre></div><p>In the <code>WEB-INF\classes\com\oracle\siebel\jenkins\BuildStepCreator.java</code> file :</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">protected</span> <span class="n">String</span> <span class="nf">getContents</span><span class="o">()</span> <span class="o">{</span>
+ <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">disa</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="k">this</span><span class="o">.</span><span class="na">disa</span><span class="o">.</span><span class="na">equalsIgnoreCase</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">))</span> <span class="o">{</span>
+   <span class="k">return</span> <span class="s">&#34;@echo off\nset BUILD_ID=%BUILD_ID%\n&#34;</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">text</span> <span class="o">+</span> <span class="s">&#34; /d %DISA_DIR% /r &#34;</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">upost</span> <span class="o">+</span> <span class="s">&#34; /n %NODE_NAME% /j &#34;</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">user</span> <span class="o">+</span> <span class="s">&#34; /g &#34;</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">pass</span> <span class="o">+</span> <span class="s">&#34; /x NA&#34;</span><span class="o">;</span>
+ <span class="o">}</span>
+ <span class="k">return</span> <span class="s">&#34;@echo off\nset BUILD_ID=%BUILD_ID%\n&#34;</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">text</span><span class="o">.</span><span class="na">replace</span><span class="o">(</span><span class="s">&#34;%DISA_DIR%&#34;</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="na">disa</span><span class="o">)</span> <span class="o">+</span> <span class="s">&#34; /d %DISA_DIR% /r &#34;</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">upost</span> <span class="o">+</span> <span class="s">&#34; /n %NODE_NAME% /j &#34;</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">user</span> <span class="o">+</span> <span class="s">&#34; /g &#34;</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">pass</span> <span class="o">+</span> <span class="s">&#34; /x &#34;</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">disa</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div><p>So, in the end, the plugin is only executing a jar file from the DISA directory with a few parameters. Great, we don&rsquo;t need Jenkins to do that!</p>
+<p>My Siebel test instance has a self signed SSL certificate which needs to be imported in the Java keystore so that the tool can communicate with the Siebel REST API.
+To do that, in Google Chrome, browse to the Siebel website, click on the https lock icon &gt; Certificate &gt; Details &gt; Copy to file &gt; DER encoded binary X.509 (.CER) and export it in <code>C:\siebel_certificate.cer</code>.</p>
+<p>By the way, <code>C:\DISA</code> contains its own jre, so let&rsquo;s use it.</p>
+<p>To import the certificate in the keystore, the following command can be used :</p>
+<div class="highlight"><pre class="chroma"><code class="language-bat" data-lang="bat"><span class="s2">&#34;C:\DISA\jre\bin\keytool&#34;</span> -import -file <span class="s2">&#34;C:\siebel_certificate.cer&#34;</span> -keystore <span class="s2">&#34;C:\DISA\jre\lib\security\cacerts&#34;</span> -alias <span class="s2">&#34;siebel certificate&#34;</span>
+</code></pre></div><p>(The default password for the keystore is <code>changeit</code>)</p>
+<p>Also, Jenkins runs the jar file as &ldquo;<code>nt authority\system</code>&rdquo; so I used <a href="https://docs.microsoft.com/en-us/sysinternals/downloads/pstools">PsTools</a> to run commands as this user :</p>
+<div class="highlight"><pre class="chroma"><code class="language-bat" data-lang="bat">PsExec.exe -i -s cmd.exe
+</code></pre></div><p>Then, <code>whoami</code> in cmd answers back &ldquo;nt authority\system&rdquo;.</p>
+<p>Finally, let&rsquo;s run the plugin script in this PsExec cmd :</p>
+<div class="highlight"><pre class="chroma"><code class="language-bat" data-lang="bat"><span class="k">set</span> <span class="nv">DISA_DIR</span><span class="p">=</span>C:\DISA
+<span class="k">set</span> <span class="nv">NODE_NAME</span><span class="p">=</span>master
+<span class="s2">&#34;C:\DISA\jre\bin\java&#34;</span> -jar C:\DISA\DesktopIntSiebelAgent\plugins\SiebelTestAutomation\Framework\KWDPresetup.jar /d <span class="nv">%DISA_DIR%</span> /r https://my_siebel_instance/siebel /n <span class="nv">%NODE_NAME%</span> /j SADMIN /g my_password /x C:\DISA
+</code></pre></div><p>If all goes well, we get the following result from the previous command :</p>
+<div class="highlight"><pre class="chroma"><code class="language-plaintext" data-lang="plaintext">INFO :: Checking config.properties file to fetch HTTP Proxy Details...
+INFO :: No HTTP Proxy Details found. Process will continue...
+INFO :: Making REST Call To Siebel Server To Fetch RUN-ID....
+INFO :: REST GET URL :: https://my_siebel_instance/siebel/v1.0/service/Automation%20Rest%20Service/GetTestRunId?ClientName=master
+INFO :: RUN-ID : 1-3FBR6 is Picked.
+INFO :: SOAP URL :: https://my_siebel_instance/siebel/app/eai/enu?SWEExtSource=WebService&amp;SWEExtCmd=Execute&amp;WSSOAP=1
+INFO :: Starting Attachment Download for RUN-ID 1-3FBR6
+200
+INFO :: XML File C:\DISA\DesktopIntSiebelAgent\plugins\SiebelTestAutomation\batchconfig.xml downloaded successfully.
+INFO :: MasterSuite File C:\DISA\DesktopIntSiebelAgent\plugins\SiebelTestAutomation\Scripts\MasterSuiteThibaut.csv downloaded successfully.
+INFO :: Optional Resources folder not found in attachments to download. Process Will Continue...
+INFO :: Optional Dataset file not found in attachments to download. Process Will Continue...
+INFO :: Attachments Downloaded Successfully for RUN-ID :: 1-3FBR6
+Starting Siebel Test Automation Execution...
+
+java -jar C:\DISA\DesktopIntSiebelAgent\plugins\SiebelTestAutomation\Framework\SiebelTestAutomation.jar C:\DISA\DesktopIntSiebelAgent\plugins\SiebelTestAutomation
+Exit Value: 0
+INFO :: Siebel Test Automation Execution Completed Successfully.
+INFO :: Uploading Attachments...
+INFO :: Reports folder C:\DISA\DesktopIntSiebelAgent\plugins\SiebelTestAutomation\Reports successfully zipped, at location C:\STEReportsLogs\1-3FBR6\Reports_08062021133735.zip
+INFO :: ZIP and XML file uploaded successfully.
+INFO :: Updating RUN-ID Status to Completed.
+INFO :: REST UPDATE URL :: https://my_siebel_instance/siebel/v1.0/service/Automation%20Rest%20Service/UpdateStatus?Id=1-3FBR6&amp;Status=Completed
+</code></pre></div><p>We also get the results with test PASS in the <code>Automation execution configuration</code> menu in the Siebel web interface.</p>
+<p>I have had an issue with Siebel returning an empty RUN-ID. For me, the problem was related to the scheduled time in the <code>Automation execution configuration</code> menu. I had to make sure that the script runs after the scheduled date.</p>
+<p>In the end, by decompiling the Jenkins plugin, we found out that it just executes a jar to run the test automation.
+Even if this part isn&rsquo;t documented, the behaviour is actually fairly simple so the dependency on Jenkins can be removed and we have the flexibility to choose any other tool!</p>
+
+      
+      <div class="blog-tags">
+        
+        <a href="https://blog.ttauveron.com/tags/siebel/">siebel</a>&nbsp;
+        
+        <a href="https://blog.ttauveron.com/tags/oracle/">oracle</a>&nbsp;
+        
+        <a href="https://blog.ttauveron.com/tags/jenkins/">jenkins</a>&nbsp;
+        
+        <a href="https://blog.ttauveron.com/tags/windows/">windows</a>&nbsp;
+        
+        <a href="https://blog.ttauveron.com/tags/java/">java</a>&nbsp;
+        
+      </div>
+      
+    </article>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="d-flex justify-content-center">
+        <p class="credits copyright text-muted">
+          Thibaut Tauveron
+          &nbsp;&bull;&nbsp;&copy;
+            2021
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+  </body>
+</html>
+
