@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <meta name="google-site-verification" content="HdqGbEoqInZEWXvmPnmKkcqDkxqI6CsY71SwwETWSOI" />
 
+  <title>Writing an openvpn bash wrapper with completion | Thibaut Tauveron</title>
+  <meta name="description" content="I wrote this command-line helper tool to simplify the connection process with multiple openvpn servers">
   <meta name="author" content="Thibaut Tauveron"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -89,7 +91,7 @@
   <meta name="twitter:image" content="https://gitlab.com/thibaut.tauveron/images/-/raw/master/headers/openvpn.png" />
   <meta name="twitter:card" content="summary" />
   <link href='https://blog.ttauveron.com/img/favicon.ico' rel='icon' type='image/x-icon'/>
-  <meta name="generator" content="Hugo 0.80.0" />
+  <meta name="generator" content="Hugo 0.87.0" />
   <link rel="alternate" href="https://blog.ttauveron.com/index.xml" type="application/rss+xml" title="Thibaut Tauveron">
   <link rel="stylesheet" href="https://blog.ttauveron.com/fontawesome/css/all.css" />
   <link rel="stylesheet" href="https://blog.ttauveron.com/css/bootstrap.min.css" />
@@ -139,7 +141,7 @@
 <h3 id="install">Install</h3>
 <p>The following code needs to be sourced.
 Personally, I&rsquo;ve added it to my .bashrc.</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1">### VPN helper</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="c1">### VPN helper</span>
 <span class="c1"># vpn autocompletion</span>
 _vpn_complete<span class="o">()</span>
 <span class="o">{</span>
@@ -188,7 +190,7 @@ vpn<span class="o">()</span> <span class="o">{</span>
 <p>Then, we put our .ovpn files in <code>$HOME/.vpn/</code>.</p>
 <p>Finally, we enjoy the bash completion after typing <code>vpn [...]</code>!</p>
 <p>Example commands:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">vpn connect config.ovpn
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">vpn connect config.ovpn
 vpn disconnect config.ovpn <span class="c1"># or vpn killall</span>
 </code></pre></div>
       

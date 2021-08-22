@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <meta name="google-site-verification" content="HdqGbEoqInZEWXvmPnmKkcqDkxqI6CsY71SwwETWSOI" />
 
+  <title>Deploy traefik in GKE using (L7) Google HTTP/S Load balancer | Thibaut Tauveron</title>
+  <meta name="description" content="Improving global latency and potentially saving costs">
   <meta name="author" content="Thibaut Tauveron"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -42,7 +44,7 @@
         "position": 3,
         "item": {
           "@id": "https:\/\/blog.ttauveron.com\/posts\/traefik_behind_google_l7_load_balancer\/",
-          "name": "Deploy traefik in g k e using ( l7) google h t t p\/ s load balancer"
+          "name": "Deploy traefik in gke using ( l7) google HTTP s load balancer"
         }
     }]
 }
@@ -89,7 +91,7 @@
   <meta name="twitter:image" content="https://gitlab.com/thibaut.tauveron/images/-/raw/master/headers/traefik-lb.png" />
   <meta name="twitter:card" content="summary" />
   <link href='https://blog.ttauveron.com/img/favicon.ico' rel='icon' type='image/x-icon'/>
-  <meta name="generator" content="Hugo 0.80.0" />
+  <meta name="generator" content="Hugo 0.87.0" />
   <link rel="alternate" href="https://blog.ttauveron.com/index.xml" type="application/rss+xml" title="Thibaut Tauveron">
   <link rel="stylesheet" href="https://blog.ttauveron.com/fontawesome/css/all.css" />
   <link rel="stylesheet" href="https://blog.ttauveron.com/css/bootstrap.min.css" />
@@ -186,14 +188,13 @@ The Identity-Aware Proxy allows to restrict HTTP/S access to a list of users/gro
 <p>We can address those concerns using <a href="https://github.com/traefik/traefik">Traefik</a>.
 Indeed, we can expose Traefik behind a L7 load balancer and use its CRDs to specify the ingress routes.
 We&rsquo;ll see next how it looks like.</p>
-<figure>
-    <img src="https://gitlab.com/thibaut.tauveron/images/-/raw/master/traefik.png" width="800px"/> 
+<figure><img src="https://gitlab.com/thibaut.tauveron/images/-/raw/master/traefik.png" width="800px"/>
 </figure>
 
 <h3 id="deploying-traefik">Deploying Traefik</h3>
 <p>The traefik helm chart can be used to deploy it in a GKE cluster, however, some modifications need to be made to have a proper setup using a Google HTTP Load Balancer.</p>
 <p>First, we need to modify the pod template file to override the liveness/readiness probes port because Google automatically creates healthchecks based on those probes ports (<a href="https://github.com/traefik/traefik-helm-chart/issues/339">Hopefully this will be available by default in the official helm chart</a>).</p>
-<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff"><span class="gh">diff --git a/traefik/templates/_podtemplate.tpl b/traefik/templates/_podtemplate.tpl
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-diff" data-lang="diff"><span class="gh">diff --git a/traefik/templates/_podtemplate.tpl b/traefik/templates/_podtemplate.tpl
 </span><span class="gh">index f401d26..3d5ddc5 100644
 </span><span class="gh"></span><span class="gd">--- a/traefik/templates/_podtemplate.tpl
 </span><span class="gd"></span><span class="gi">+++ b/traefik/templates/_podtemplate.tpl
@@ -222,7 +223,7 @@ We&rsquo;ll see next how it looks like.</p>
 <li>We can also disable the websecure entrypoint, SSL termination can be done at the Load balancer level.</li>
 </ul>
 <p>This looks like the following:</p>
-<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff"><span class="gh">diff --git a/values.yaml b/values.yaml
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-diff" data-lang="diff"><span class="gh">diff --git a/values.yaml b/values.yaml
 </span><span class="gh">index 1e0e5a9..785a1d3 100644
 </span><span class="gh"></span><span class="gd">--- a/values.yaml
 </span><span class="gd"></span><span class="gi">+++ b/values.yaml
@@ -271,7 +272,7 @@ We&rsquo;ll see next how it looks like.</p>
    annotations: {}
    # Additional service labels (e.g. for filtering Service by custom labels)
 </code></pre></div><p>Finally, we can add, for example, the following helm template to create a gce ingress for the HTTP Load Balancer.</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">{{- <span class="l">if and .Values.service.enabled (eq .Values.service.type &#34;NodePort&#34;) }}</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml">{{- <span class="l">if and .Values.service.enabled (eq .Values.service.type &#34;NodePort&#34;) }}</span><span class="w">
 </span><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">networking.k8s.io/v1beta1</span><span class="w">
 </span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Ingress</span><span class="w">
 </span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
@@ -294,7 +295,7 @@ We&rsquo;ll see next how it looks like.</p>
 <h3 id="using-traefik-in-other-deployments">Using Traefik in other deployments</h3>
 <p>How does this traefik setup look like in pratice?</p>
 <p>First, let&rsquo;s create a <a href="https://github.com/traefik/whoami">whoami</a> deployment.</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Deployment</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Deployment</span><span class="w">
 </span><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">apps/v1</span><span class="w">
 </span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
 </span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">whoami</span><span class="w">
@@ -329,7 +330,7 @@ We&rsquo;ll see next how it looks like.</p>
 </span><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
 </span><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">whoami</span><span class="w">
 </span></code></pre></div><p>Then, using <a href="https://github.com/bitnami/charts/tree/master/bitnami/external-dns">external-dns</a>, we can create a CNAME record that points to traefik and a traefik ingress route to redirect to the whoami service.</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">externaldns.k8s.io/v1alpha1</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">externaldns.k8s.io/v1alpha1</span><span class="w">
 </span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">DNSEndpoint</span><span class="w">
 </span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
 </span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">whoami</span><span class="w">

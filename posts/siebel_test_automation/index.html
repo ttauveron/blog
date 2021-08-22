@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <meta name="google-site-verification" content="HdqGbEoqInZEWXvmPnmKkcqDkxqI6CsY71SwwETWSOI" />
 
+  <title>Tinkering with Siebel Test Automation | Thibaut Tauveron</title>
+  <meta name="description" content="Reverse engineering Siebel test automation Jenkins plugin to run the tests from any other automation tool">
   <meta name="author" content="Thibaut Tauveron"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -89,7 +91,7 @@
   <meta name="twitter:image" content="https://gitlab.com/thibaut.tauveron/images/-/raw/master/headers/siebel-jenkins.png" />
   <meta name="twitter:card" content="summary" />
   <link href='https://blog.ttauveron.com/img/favicon.ico' rel='icon' type='image/x-icon'/>
-  <meta name="generator" content="Hugo 0.80.0" />
+  <meta name="generator" content="Hugo 0.87.0" />
   <link rel="alternate" href="https://blog.ttauveron.com/index.xml" type="application/rss+xml" title="Thibaut Tauveron">
   <link rel="stylesheet" href="https://blog.ttauveron.com/fontawesome/css/all.css" />
   <link rel="stylesheet" href="https://blog.ttauveron.com/css/bootstrap.min.css" />
@@ -174,8 +176,7 @@ to setup a Jenkins server in order to run the tests automatically.
 They provide a Jenkins plugin called <code>STE.hpi</code>, available in the Siebel Server&rsquo;s plugins directory.
 However, Oracle only provides a guide for Jenkins.</p>
 <p>At a high level, it works like the following :
-<figure>
-    <img src="https://docs.google.com/presentation/d/1D98EuAAxAbG4xLZBvuQTCeRzTfZS8kdswHceomGNvRo/export/jpeg?id=1D98EuAAxAbG4xLZBvuQTCeRzTfZS8kdswHceomGNvRo&amp;pageid=p" width="100%"/> 
+<figure><img src="https://docs.google.com/presentation/d/1D98EuAAxAbG4xLZBvuQTCeRzTfZS8kdswHceomGNvRo/export/jpeg?id=1D98EuAAxAbG4xLZBvuQTCeRzTfZS8kdswHceomGNvRo&amp;pageid=p" width="100%"/>
 </figure>
 </p>
 <p>First, a tester needs to schedule a test execution in the <code>Automation Execution Configurations</code> menu from the Siebel web interface.
@@ -187,14 +188,14 @@ Using Jenkins in that case adds complexity and maintenance effort as it&rsquo;s 
 <p>Ok, time to hack. Let&rsquo;s look into this Jenkins plugin using a <a href="http://java-decompiler.github.io/">Java decompiler</a> to check what they are doing.</p>
 <p>Here are the interesting parts :</p>
 <p>In the <code>WEB-INF\classes\com\oracle\siebel\jenkins\BuildStepCommandInterpreter\config.jelly</code> file :</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">f:entry</span> <span class="na">title</span><span class="o">=</span><span class="s">&#34;Command&#34;</span> <span class="na">field</span><span class="o">=</span><span class="s">&#34;text&#34;</span><span class="p">&gt;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">f:entry</span> <span class="na">title</span><span class="o">=</span><span class="s">&#34;Command&#34;</span> <span class="na">field</span><span class="o">=</span><span class="s">&#34;text&#34;</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">f:textarea</span> 
     <span class="na">style</span><span class="o">=</span><span class="s">&#34;background-color:#f0f0f0; font-size:13px; font-family:courier&#34;</span> 
     <span class="na">readonly</span><span class="o">=</span><span class="s">&#34;readonly&#34;</span> 
     <span class="na">value</span><span class="o">=</span><span class="s">&#34;java -jar %DISA_DIR%\DesktopIntSiebelAgent\plugins\SiebelTestAutomation\Framework\KWDPresetup.jar&#34;</span><span class="p">/&gt;</span>
 <span class="p">&lt;/</span><span class="nt">f:entry</span><span class="p">&gt;</span>
 </code></pre></div><p>In the <code>WEB-INF\classes\com\oracle\siebel\jenkins\BuildStepCreator.java</code> file :</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">protected</span> <span class="n">String</span> <span class="nf">getContents</span><span class="o">()</span> <span class="o">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">protected</span> <span class="n">String</span> <span class="nf">getContents</span><span class="o">()</span> <span class="o">{</span>
  <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">disa</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="k">this</span><span class="o">.</span><span class="na">disa</span><span class="o">.</span><span class="na">equalsIgnoreCase</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">))</span> <span class="o">{</span>
    <span class="k">return</span> <span class="s">&#34;@echo off\nset BUILD_ID=%BUILD_ID%\n&#34;</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">text</span> <span class="o">+</span> <span class="s">&#34; /d %DISA_DIR% /r &#34;</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">upost</span> <span class="o">+</span> <span class="s">&#34; /n %NODE_NAME% /j &#34;</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">user</span> <span class="o">+</span> <span class="s">&#34; /g &#34;</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">pass</span> <span class="o">+</span> <span class="s">&#34; /x NA&#34;</span><span class="o">;</span>
  <span class="o">}</span>
@@ -205,17 +206,17 @@ Using Jenkins in that case adds complexity and maintenance effort as it&rsquo;s 
 To do that, in Google Chrome, browse to the Siebel website, click on the https lock icon &gt; Certificate &gt; Details &gt; Copy to file &gt; DER encoded binary X.509 (.CER) and export it in <code>C:\siebel_certificate.cer</code>.</p>
 <p>By the way, <code>C:\DISA</code> contains its own jre, so let&rsquo;s use it.</p>
 <p>To import the certificate in the keystore, the following command can be used :</p>
-<div class="highlight"><pre class="chroma"><code class="language-bat" data-lang="bat"><span class="s2">&#34;C:\DISA\jre\bin\keytool&#34;</span> -import -file <span class="s2">&#34;C:\siebel_certificate.cer&#34;</span> -keystore <span class="s2">&#34;C:\DISA\jre\lib\security\cacerts&#34;</span> -alias <span class="s2">&#34;siebel certificate&#34;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bat" data-lang="bat"><span class="s2">&#34;C:\DISA\jre\bin\keytool&#34;</span> -import -file <span class="s2">&#34;C:\siebel_certificate.cer&#34;</span> -keystore <span class="s2">&#34;C:\DISA\jre\lib\security\cacerts&#34;</span> -alias <span class="s2">&#34;siebel certificate&#34;</span>
 </code></pre></div><p>(The default password for the keystore is <code>changeit</code>)</p>
 <p>Also, Jenkins runs the jar file as &ldquo;<code>nt authority\system</code>&rdquo; so I used <a href="https://docs.microsoft.com/en-us/sysinternals/downloads/pstools">PsTools</a> to run commands as this user :</p>
-<div class="highlight"><pre class="chroma"><code class="language-bat" data-lang="bat">PsExec.exe -i -s cmd.exe
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bat" data-lang="bat">PsExec.exe -i -s cmd.exe
 </code></pre></div><p>Then, <code>whoami</code> in cmd answers back &ldquo;nt authority\system&rdquo;.</p>
 <p>Finally, let&rsquo;s run the plugin script in this PsExec cmd :</p>
-<div class="highlight"><pre class="chroma"><code class="language-bat" data-lang="bat"><span class="k">set</span> <span class="nv">DISA_DIR</span><span class="p">=</span>C:\DISA
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bat" data-lang="bat"><span class="k">set</span> <span class="nv">DISA_DIR</span><span class="p">=</span>C:\DISA
 <span class="k">set</span> <span class="nv">NODE_NAME</span><span class="p">=</span>master
 <span class="s2">&#34;C:\DISA\jre\bin\java&#34;</span> -jar C:\DISA\DesktopIntSiebelAgent\plugins\SiebelTestAutomation\Framework\KWDPresetup.jar /d <span class="nv">%DISA_DIR%</span> /r https://my_siebel_instance/siebel /n <span class="nv">%NODE_NAME%</span> /j SADMIN /g my_password /x C:\DISA
 </code></pre></div><p>If all goes well, we get the following result from the previous command :</p>
-<div class="highlight"><pre class="chroma"><code class="language-plaintext" data-lang="plaintext">INFO :: Checking config.properties file to fetch HTTP Proxy Details...
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plaintext" data-lang="plaintext">INFO :: Checking config.properties file to fetch HTTP Proxy Details...
 INFO :: No HTTP Proxy Details found. Process will continue...
 INFO :: Making REST Call To Siebel Server To Fetch RUN-ID....
 INFO :: REST GET URL :: https://my_siebel_instance/siebel/v1.0/service/Automation%20Rest%20Service/GetTestRunId?ClientName=master

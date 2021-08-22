@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <meta name="google-site-verification" content="HdqGbEoqInZEWXvmPnmKkcqDkxqI6CsY71SwwETWSOI" />
 
+  <title>Configuring a TCP proxy between networks in GCP | Thibaut Tauveron</title>
+  <meta name="description" content="How to access an internal API from another VPC">
   <meta name="author" content="Thibaut Tauveron"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -42,7 +44,7 @@
         "position": 3,
         "item": {
           "@id": "https:\/\/blog.ttauveron.com\/posts\/configuring_tcp_proxy_between_networks_in_gcp\/",
-          "name": "Configuring a t c p proxy between networks in g c p"
+          "name": "Configuring a tcp proxy between networks in gcp"
         }
     }]
 }
@@ -87,7 +89,7 @@
   <meta name="twitter:description" content="How to access an internal API from another VPC">
   <meta name="twitter:card" content="summary" />
   <link href='https://blog.ttauveron.com/img/favicon.ico' rel='icon' type='image/x-icon'/>
-  <meta name="generator" content="Hugo 0.80.0" />
+  <meta name="generator" content="Hugo 0.87.0" />
   <link rel="alternate" href="https://blog.ttauveron.com/index.xml" type="application/rss+xml" title="Thibaut Tauveron">
   <link rel="stylesheet" href="https://blog.ttauveron.com/fontawesome/css/all.css" />
   <link rel="stylesheet" href="https://blog.ttauveron.com/css/bootstrap.min.css" />
@@ -135,8 +137,7 @@
 <p>A little bit of context first, there are two Google Cloud projects (which could be in two different organizations) and each one
 of those have their own network.
 A client in Project A needs to access an API in project B but this API is not publicly exposed for security reasons.</p>
-<figure>
-    <img src="https://docs.google.com/presentation/d/1bClZZC0YyqQH4qe9KQMyW92Dwbt7fQl4RLic72m2M3c/export/jpeg?id=1bClZZC0YyqQH4qe9KQMyW92Dwbt7fQl4RLic72m2M3c&amp;pageid=gb5b8e96233_0_0" width="75%"/> 
+<figure><img src="https://docs.google.com/presentation/d/1bClZZC0YyqQH4qe9KQMyW92Dwbt7fQl4RLic72m2M3c/export/jpeg?id=1bClZZC0YyqQH4qe9KQMyW92Dwbt7fQl4RLic72m2M3c&amp;pageid=gb5b8e96233_0_0" width="75%"/>
 </figure>
 
 <p>We could think about pairing the two networks together but we would potentially have overlapping IP issues.
@@ -144,8 +145,7 @@ It would also be possible to solve this problem by playing around in subnets con
 complexity (IP subnet addressing rules, coordination between teams for network management) and it doesn&rsquo;t really scale,
 for example, what if I have to pair with a third network in the future?</p>
 <p>My solution is to use a proxy between the two networks so that they remain decoupled as much as possible.</p>
-<figure>
-    <img src="https://docs.google.com/presentation/d/1bClZZC0YyqQH4qe9KQMyW92Dwbt7fQl4RLic72m2M3c/export/jpeg?id=1bClZZC0YyqQH4qe9KQMyW92Dwbt7fQl4RLic72m2M3c&amp;pageid=gbac457ac4e_0_4" width="75%"/> 
+<figure><img src="https://docs.google.com/presentation/d/1bClZZC0YyqQH4qe9KQMyW92Dwbt7fQl4RLic72m2M3c/export/jpeg?id=1bClZZC0YyqQH4qe9KQMyW92Dwbt7fQl4RLic72m2M3c&amp;pageid=gbac457ac4e_0_4" width="75%"/>
 </figure>
 
 <p>Here we create a vpc-proxy in our project A, which will use a convenient subnet for project B.
@@ -155,8 +155,7 @@ As a result, we can create a VM with two network interfaces, connecting respecti
 cluster in B.
 From Jenkins, we can point to the VM proxy IP in A which will route the request to the Kubernetes API server in B.</p>
 <p>To configure the proxy, I did the following :</p>
-<figure>
-    <img src="https://docs.google.com/presentation/d/1bClZZC0YyqQH4qe9KQMyW92Dwbt7fQl4RLic72m2M3c/export/jpeg?id=1bClZZC0YyqQH4qe9KQMyW92Dwbt7fQl4RLic72m2M3c&amp;pageid=gb5b8e96233_0_158" width="100%"/> 
+<figure><img src="https://docs.google.com/presentation/d/1bClZZC0YyqQH4qe9KQMyW92Dwbt7fQl4RLic72m2M3c/export/jpeg?id=1bClZZC0YyqQH4qe9KQMyW92Dwbt7fQl4RLic72m2M3c&amp;pageid=gb5b8e96233_0_158" width="100%"/>
 </figure>
 
 <p>L3 and L4 refer to the network and transport layers in the OSI model, we can solve network communications at L3 with
@@ -167,7 +166,7 @@ Then we can create TCP forwarding rules at L4 with haproxy, this will allow us t
 Fortunately, the <a href="https://cloud.google.com/vpc/docs/create-use-multiple-interfaces#configuring_policy_routing">Google cloud documentation</a>
 helps us with this.</p>
 <p>Here is the setup in the proxy VM in my case:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># First routing table</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># First routing table</span>
 <span class="nb">echo</span> <span class="s2">&#34;1 rt1&#34;</span> <span class="p">|</span> sudo tee -a /etc/iproute2/rt_tables
 sudo ip route add 192.168.0.1 src 192.168.0.2 dev ens4 table rt1
 sudo ip route add default via 192.168.0.1 dev ens4 table rt1
@@ -186,7 +185,7 @@ to 10.3.0.3 will reach the client in A. For the routing tables we just created t
 source in our commands. We can run <code>sudo tcpdump -i ens4 -qtln icmp</code> in a target VM to verify that it receives our
 ping requests.</p>
 <p>Let&rsquo;s test if the routing works in the proxy VM :</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># Reaching the client</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># Reaching the client</span>
 ping -I 192.168.0.2 10.3.0.3
 
 <span class="c1"># Reaching the server</span>
@@ -197,7 +196,7 @@ curl --interface 192.168.1.2 http://10.3.0.4
 </code></pre></div><p>The trick is to use the source IP, now we need to install haproxy (<code>sudo apt install haproxy</code>) and configure our
 mappings, which is easy to do!</p>
 <p>Let&rsquo;s edit <code>/etc/haproxy/haproxy.cfg</code></p>
-<div class="highlight"><pre class="chroma"><code class="language-cfg" data-lang="cfg"><span class="na">global</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cfg" data-lang="cfg"><span class="na">global</span>
 <span class="na">defaults</span>
   <span class="na">timeout client 30s</span>
   <span class="na">timeout server 30s</span>

@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <meta name="google-site-verification" content="HdqGbEoqInZEWXvmPnmKkcqDkxqI6CsY71SwwETWSOI" />
 
+  <title>Scanning a network to find a Kubernetes api server | Thibaut Tauveron</title>
+  <meta name="description" content="A story about using nmap to find and extract information on a Kubernetes api server. Had a lot of fun writing this one!">
   <meta name="author" content="Thibaut Tauveron"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -42,7 +44,7 @@
         "position": 3,
         "item": {
           "@id": "https:\/\/blog.ttauveron.com\/posts\/scan-network-k8s-api-server-nmap\/",
-          "name": "Scanning a network to find a kubernetes api server"
+          "name": "Scanning a network to find a kubernetes API server"
         }
     }]
 }
@@ -89,7 +91,7 @@
   <meta name="twitter:image" content="https://gitlab.com/thibaut.tauveron/images/-/raw/master/headers/nmap-matrix.png" />
   <meta name="twitter:card" content="summary" />
   <link href='https://blog.ttauveron.com/img/favicon.ico' rel='icon' type='image/x-icon'/>
-  <meta name="generator" content="Hugo 0.80.0" />
+  <meta name="generator" content="Hugo 0.87.0" />
   <link rel="alternate" href="https://blog.ttauveron.com/index.xml" type="application/rss+xml" title="Thibaut Tauveron">
   <link rel="stylesheet" href="https://blog.ttauveron.com/fontawesome/css/all.css" />
   <link rel="stylesheet" href="https://blog.ttauveron.com/css/bootstrap.min.css" />
@@ -212,7 +214,7 @@ Trying something...
 </div>
 <br />
 
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">curl --connect-timeout <span class="m">2</span> -k https://192.168.99.0
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">curl --connect-timeout <span class="m">2</span> -k https://192.168.99.0
 </code></pre></div><pre><code>curl: (28) Connection timed out after 2001 milliseconds
 </code></pre><div style="max-width: 800px">
   <div class="container">
@@ -233,7 +235,7 @@ Definitely not the first one.
 </div>
 <br />
 
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">curl --connect-timeout <span class="m">2</span> -k https://192.168.99.1
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">curl --connect-timeout <span class="m">2</span> -k https://192.168.99.1
 </code></pre></div><pre><code>curl: (28) Connection timed out after 2001 milliseconds
 </code></pre><div style="max-width: 800px">
   <div class="container">
@@ -294,7 +296,7 @@ Wait, I have an idea.
 </div>
 <br />
 
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="cp">#!/bin/bash
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="cp">#!/bin/bash
 </span><span class="cp"></span>
 <span class="k">for</span> i in <span class="o">{</span>0..256<span class="o">}</span><span class="p">;</span> <span class="k">do</span>
   curl --connect-timeout <span class="m">2</span> -k https://192.168.99.<span class="nv">$i</span>
@@ -387,7 +389,7 @@ How about... nmap?
 <br />
 
 <p>Let&rsquo;s create <code>kubernetes-version.nse</code> in <code>/usr/share/nmap/scripts/</code>, don&rsquo;t forget to thank Jon Mosco for his <a href="https://github.com/jonmosco/nmap-nse-scripts/blob/master/kubernetes-version.nse">initial work</a>!</p>
-<div class="highlight"><pre class="chroma"><code class="language-lua" data-lang="lua"><span class="kd">local</span> <span class="n">shortport</span> <span class="o">=</span> <span class="n">require</span> <span class="s2">&#34;shortport&#34;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="kd">local</span> <span class="n">shortport</span> <span class="o">=</span> <span class="n">require</span> <span class="s2">&#34;shortport&#34;</span>
 <span class="kd">local</span> <span class="n">json</span> <span class="o">=</span> <span class="n">require</span> <span class="s2">&#34;json&#34;</span>
 <span class="kd">local</span> <span class="n">http</span> <span class="o">=</span> <span class="n">require</span> <span class="s2">&#34;http&#34;</span>
 <span class="kd">local</span> <span class="n">nmap</span> <span class="o">=</span> <span class="n">require</span> <span class="s2">&#34;nmap&#34;</span>
@@ -480,7 +482,7 @@ My name... Is... Neo!
 </div>
 <br />
 
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">nmap --script kubernetes-version -T4 192.168.99.0/24
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">nmap --script kubernetes-version -T4 192.168.99.0/24
 </code></pre></div><div style="max-width: 800px">
   <div class="container">
     <div class="row align-items-start">
@@ -559,7 +561,7 @@ He is the one!
 <br />
 
 <p>To run a full scan that includes all scripts from the &ldquo;version&rdquo; category :</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># First, update the database with the newly added kubernetes-version.nse script</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># First, update the database with the newly added kubernetes-version.nse script</span>
 sudo nmap --script-updatedb
 <span class="c1"># Second, try all &#39;version&#39; scripts on the discovered machine</span>
 nmap --script version -T4 192.168.99.101
