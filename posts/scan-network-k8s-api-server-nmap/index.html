@@ -91,7 +91,7 @@
   <meta name="twitter:image" content="https://gitlab.com/thibaut.tauveron/images/-/raw/master/headers/nmap-matrix.png" />
   <meta name="twitter:card" content="summary" />
   <link href='https://blog.ttauveron.com/img/favicon.ico' rel='icon' type='image/x-icon'/>
-  <meta name="generator" content="Hugo 0.87.0" />
+  <meta name="generator" content="Hugo 0.88.1" />
   <link rel="alternate" href="https://blog.ttauveron.com/index.xml" type="application/rss+xml" title="Thibaut Tauveron">
   <link rel="stylesheet" href="https://blog.ttauveron.com/fontawesome/css/all.css" />
   <link rel="stylesheet" href="https://blog.ttauveron.com/css/bootstrap.min.css" />
@@ -215,7 +215,7 @@ Trying something...
 <br />
 
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">curl --connect-timeout <span class="m">2</span> -k https://192.168.99.0
-</code></pre></div><pre><code>curl: (28) Connection timed out after 2001 milliseconds
+</code></pre></div><pre tabindex="0"><code>curl: (28) Connection timed out after 2001 milliseconds
 </code></pre><div style="max-width: 800px">
   <div class="container">
     <div class="row align-items-start">
@@ -236,7 +236,7 @@ Definitely not the first one.
 <br />
 
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">curl --connect-timeout <span class="m">2</span> -k https://192.168.99.1
-</code></pre></div><pre><code>curl: (28) Connection timed out after 2001 milliseconds
+</code></pre></div><pre tabindex="0"><code>curl: (28) Connection timed out after 2001 milliseconds
 </code></pre><div style="max-width: 800px">
   <div class="container">
     <div class="row align-items-start">
@@ -301,7 +301,7 @@ Wait, I have an idea.
 <span class="k">for</span> i in <span class="o">{</span>0..256<span class="o">}</span><span class="p">;</span> <span class="k">do</span>
   curl --connect-timeout <span class="m">2</span> -k https://192.168.99.<span class="nv">$i</span>
 <span class="k">done</span>
-</code></pre></div><pre><code>curl: (28) Connection timed out after 2001 milliseconds
+</code></pre></div><pre tabindex="0"><code>curl: (28) Connection timed out after 2001 milliseconds
 curl: (28) Connection timed out after 2001 milliseconds
 curl: (28) Connection timed out after 2000 milliseconds
 curl: (28) Connection timed out after 2001 milliseconds
@@ -368,7 +368,7 @@ Let's do something more fun!
 </div>
 <br />
 
-<pre><code>    ...
+<pre tabindex="0"><code>    ...
 </code></pre><div style="max-width: 800px">
   <div class="container">
     <div class="row align-items-start">
@@ -502,7 +502,7 @@ Dodge this.
 </div>
 <br />
 
-<pre><code>Nmap scan report for 192.168.99.101
+<pre tabindex="0"><code>Nmap scan report for 192.168.99.101
 Host is up (0.00013s latency).
 Not shown: 996 closed ports
 PORT     STATE SERVICE
