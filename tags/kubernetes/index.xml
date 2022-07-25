@@ -5,16 +5,7 @@
     <link>https://blog.ttauveron.com/tags/kubernetes/</link>
     <description>Recent content in kubernetes on Thibaut Tauveron</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 10 Mar 2021 00:58:31 +0100</lastBuildDate><atom:link href="https://blog.ttauveron.com/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Scanning a network to find a Kubernetes api server</title>
-      <link>https://blog.ttauveron.com/posts/scan-network-k8s-api-server-nmap/</link>
-      <pubDate>Wed, 10 Mar 2021 00:58:31 +0100</pubDate>
-      
-      <guid>https://blog.ttauveron.com/posts/scan-network-k8s-api-server-nmap/</guid>
-      <description>Morpheus Neo, there&#39;s a Kubernetes api server available somewhere in 192.168.99.0/24, you have to find it to reach the pods.       Neo That&#39;s 256 addresses, how am I supposed to guess the right one?!       Morpheus I&#39;m trying to free your mind, Neo. But I can only show you the door. You&#39;re the one that has to walk through it.</description>
-    </item>
-    
+    <lastBuildDate>Mon, 15 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.ttauveron.com/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Deploy traefik in GKE using (L7) Google HTTP/S Load balancer</title>
       <link>https://blog.ttauveron.com/posts/traefik_behind_google_l7_load_balancer/</link>
