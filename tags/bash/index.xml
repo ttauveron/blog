@@ -21,7 +21,7 @@ Install The following code needs to be sourced. Personally, I&amp;rsquo;ve added
     <item>
       <title>Capitalizing on the Linux commands history</title>
       <link>https://blog.ttauveron.com/posts/capitalizing_on_the_linux_commands_history/</link>
-      <pubDate>Tue, 09 Feb 2021 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 09 Mar 2021 00:00:00 +0000</pubDate>
       
       <guid>https://blog.ttauveron.com/posts/capitalizing_on_the_linux_commands_history/</guid>
       <description>Working with Linux I tend to forget commands that I’m not using regularly. I also don&amp;rsquo;t like to retype a long command. Fortunately, the bash history can be used to find back those previous commands.
