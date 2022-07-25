@@ -7,17 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Sat, 07 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.ttauveron.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Tinkering with Siebel Test Automation</title>
+      <title>Reverse engineering Siebel Test Automation Jenkins plugin</title>
       <link>https://blog.ttauveron.com/posts/siebel_test_automation/</link>
       <pubDate>Sat, 07 Aug 2021 00:00:00 +0000</pubDate>
       
       <guid>https://blog.ttauveron.com/posts/siebel_test_automation/</guid>
       <description>I have recently been helping a Swedish insurance company to improve their DevOps capabilities. Like many other large companies, they are using an Oracle product called Siebel as their CRM and one of the challenges is to introduce smoke testing through test automation for Siebel.
-Oracle provides different tools to orchestrate this test automation in Siebel and this article has been a great resource for me to understand in more detail how it works.</description>
+Oracle provides different tools to orchestrate this test automation in Siebel and this article has been a great resource for me to understand in more details how it works.</description>
     </item>
     
     <item>
-      <title>Writing an openvpn bash wrapper with completion</title>
+      <title>A basic openvpn bash wrapper with completion</title>
       <link>https://blog.ttauveron.com/posts/vpn_bash_helper/</link>
       <pubDate>Mon, 12 Apr 2021 17:20:31 +0200</pubDate>
       
@@ -39,7 +39,17 @@ Usually, the first thing we do in GKE when we need to expose a service is to set
     </item>
     
     <item>
-      <title>Configuring a TCP proxy between networks in GCP</title>
+      <title>Capitalizing on the Linux commands history</title>
+      <link>https://blog.ttauveron.com/posts/capitalizing_on_the_linux_commands_history/</link>
+      <pubDate>Tue, 09 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.ttauveron.com/posts/capitalizing_on_the_linux_commands_history/</guid>
+      <description>Working with Linux I tend to forget commands that I’m not using regularly. I also don&amp;rsquo;t like to retype a long command. Fortunately, the bash history can be used to find back those previous commands.
+The basic usage is to cycle through the bash history with the up and down keys, we also can use Ctrl-R to type the beginning of a command and autocomplete it according to the history.</description>
+    </item>
+    
+    <item>
+      <title>A TCP proxy between networks in GCP</title>
       <link>https://blog.ttauveron.com/posts/configuring_tcp_proxy_between_networks_in_gcp/</link>
       <pubDate>Mon, 08 Feb 2021 00:00:00 +0000</pubDate>
       

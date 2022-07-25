@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+      <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="google-site-verification" content="HdqGbEoqInZEWXvmPnmKkcqDkxqI6CsY71SwwETWSOI" />
+
+  <title>Capitalizing on the Linux commands history | Thibaut Tauveron</title>
+  <meta name="description" content="A workflow to improve productivity in the terminal">
+  <meta name="author" content="Thibaut Tauveron"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "Thibaut Tauveron",
+    
+    "url": "https:\/\/blog.ttauveron.com"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/blog.ttauveron.com"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/blog.ttauveron.com",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/blog.ttauveron.com\/posts\/capitalizing_on_the_linux_commands_history\/",
+          "name": "Capitalizing on the linux commands history"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "Thibaut Tauveron"
+  },
+  "headline": "Capitalizing on the Linux commands history",
+  "description" : "Working with Linux I tend to forget commands that I’m not using regularly. I also don\u0026rsquo;t like to retype a long command. Fortunately, the bash history can be used to find back those previous commands.\nThe basic usage is to cycle through the bash history with the up and down keys, we also can use Ctrl-R to type the beginning of a command and autocomplete it according to the history.",
+  "inLanguage" : "en",
+  "wordCount":  688 ,
+  "datePublished" : "2021-02-09T00:00:00",
+  "dateModified" : "2021-02-09T00:00:00",
+  "image" : "https:\/\/blog.ttauveron.com",
+  "keywords" : [ "linux, bash, productivity" ],
+  "mainEntityOfPage" : "https:\/\/blog.ttauveron.com\/posts\/capitalizing_on_the_linux_commands_history\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/blog.ttauveron.com",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/blog.ttauveron.com",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="Capitalizing on the Linux commands history" />
+<meta property="og:description" content="A workflow to improve productivity in the terminal">
+<meta name="publish_date" property="og:publish_date" content='2021-02-09T00:00:00Z'>
+
+<meta property="og:url" content="https://blog.ttauveron.com/posts/capitalizing_on_the_linux_commands_history/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Thibaut Tauveron" />
+
+  <meta name="twitter:title" content="Capitalizing on the Linux commands history" />
+  <meta name="twitter:description" content="A workflow to improve productivity in the terminal">
+  <meta name="twitter:card" content="summary" />
+  <link href='https://blog.ttauveron.com/img/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta name="generator" content="Hugo 0.88.1" />
+  <link rel="alternate" href="https://blog.ttauveron.com/index.xml" type="application/rss+xml" title="Thibaut Tauveron">
+  <link rel="stylesheet" href="https://blog.ttauveron.com/fontawesome/css/all.css" />
+  <link rel="stylesheet" href="https://blog.ttauveron.com/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://blog.ttauveron.com/css/syntax.css" />
+  <link rel="stylesheet" href="https://blog.ttauveron.com/css/main.css" />
+
+  </head>
+  <body>
+    
+
+<nav>
+  <div class="navbar-custom">
+    <div class="container">
+      <div class="row post-preview">
+        <div class="col-6 d-flex align-items-center me-auto">
+          <a class="header-title" href="https://blog.ttauveron.com">Thibaut Tauveron</a>
+        </div>
+        <div class="col-6 d-flex align-items-end flex-column">
+      <span class="fa-sm">
+        <a href="https://github.com/ttauveron" title="GitHub" class="fa-stack">
+          <div class="fab fa-github fa-stack-1x"></div>
+        </a>
+        <a href="https://linkedin.com/in/ttauveron" title="LinkedIn" class="fa-stack">
+          <div class="fab fa-linkedin fa-stack-1x"></div>
+        </a>
+        <a href="/index.xml" title="RSS" class="fa-stack">
+          <div class="fa fa-rss fa-stack-1x"></div>
+        </a>
+      </span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <article role="main" class="blog-post">
+      <h1>Capitalizing on the Linux commands history</h1>
+      <span class="date">Tuesday, February 9, 2021</span>
+      <p>Working with Linux I tend to forget commands that I’m not using regularly. I also don&rsquo;t like to retype a long command.
+Fortunately, the bash history can be used to find back those previous commands.</p>
+<p>The basic usage is to cycle through the bash history with the up and down keys, we also can use Ctrl-R to type the
+beginning of a command and autocomplete it according to the history.</p>
+<p>This history of commands is actually pretty valuable, a lot of time can be saved recovering previous commands with a
+few keystrokes. We could use this history to type a command once and use it as a reference forever, productivity
+gets compounded over time!</p>
+<p>The default bash history workflow can be greatly improved, first by modifying history limits, and second by using a
+more powerful history searching tool.</p>
+<h2 id="improving-the-history-retention">Improving the history retention</h2>
+<p>First, we can modify the <code>~/.bashrc</code> configuration. For that, I got largely inspired by
+<a href="https://github.com/ohmybash/oh-my-bash/blob/master/lib/history.sh">this repository</a>.</p>
+<p>I use the following configuration in my bashrc :</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="c1">## SANE HISTORY DEFAULTS ##</span>
+<span class="c1"># Append to the history file, don&#39;t overwrite it</span>
+<span class="nb">shopt</span> -s histappend
+<span class="c1"># Save multi-line commands as one command</span>
+<span class="nb">shopt</span> -s cmdhist
+<span class="c1"># Record each line as it gets issued</span>
+<span class="nv">PROMPT_COMMAND</span><span class="o">=</span><span class="s1">&#39;history -a&#39;</span>
+<span class="c1"># Huge history. Doesn&#39;t appear to slow things down, so why not?</span>
+<span class="nv">HISTSIZE</span><span class="o">=</span><span class="m">500000</span>
+<span class="nv">HISTFILESIZE</span><span class="o">=</span><span class="m">10000000</span>
+<span class="c1"># Avoid duplicate entries</span>
+<span class="nv">HISTCONTROL</span><span class="o">=</span><span class="s2">&#34;erasedups:ignoreboth&#34;</span>
+<span class="c1"># Don&#39;t record some commands</span>
+<span class="nb">export</span> <span class="nv">HISTIGNORE</span><span class="o">=</span><span class="s2">&#34;&amp;:[ ]*:exit:ls:bg:fg:history:clear&#34;</span>
+<span class="c1"># Use standard ISO 8601 timestamp</span>
+<span class="c1"># %F equivalent to %Y-%m-%d</span>
+<span class="c1"># %T equivalent to %H:%M:%S (24-hours format)</span>
+<span class="nv">HISTTIMEFORMAT</span><span class="o">=</span><span class="s1">&#39;%F %T &#39;</span>
+</code></pre></div><p>I also source control my <code>~/.bash_history</code> file.</p>
+<p>When I get to use another computer, I can just pull the previous history and append it
+to my local <code>.bash_history</code> file.</p>
+<p>This allows me to keep several years of bash history!</p>
+<h2 id="using-a-better-tool-for-searching-history">Using a better tool for searching history</h2>
+<p>There are various tools to search more efficiently in the commands history (<a href="https://github.com/junegunn/fzf">fzf</a>, <a href="https://github.com/cantino/mcfly">mcfly</a>). I am using <a href="https://github.com/dvorka/hstr">hstr</a> because I like its interface and it does everything I need.
+<code>hstr</code> basically allows to «Easily view, navigate and search your command history with shell history suggest box».</p>
+<p>To install this tool, refer to <a href="https://github.com/dvorka/hstr#installation">the project README</a>.</p>
+<p>Here is the configuration I use for <code>hstr</code>, to be added in the <code>.bashrc</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># HSTR configuration - add this to ~/.bashrc</span>
+<span class="nb">alias</span> <span class="nv">hh</span><span class="o">=</span>hstr                    <span class="c1"># hh to be alias for hstr</span>
+<span class="nb">export</span> <span class="nv">HSTR_CONFIG</span><span class="o">=</span>hicolor,raw-history-view,blacklist,substring-matching
+
+<span class="c1"># ensure synchronization between Bash memory and history file</span>
+<span class="nb">export</span> <span class="nv">PROMPT_COMMAND</span><span class="o">=</span><span class="s2">&#34;history -a; history -n; </span><span class="si">${</span><span class="nv">PROMPT_COMMAND</span><span class="si">}</span><span class="s2">&#34;</span>
+<span class="c1"># if this is interactive shell, then bind hstr to Ctrl-r (for Vi mode check doc)</span>
+<span class="k">if</span> <span class="o">[[</span> <span class="nv">$-</span> <span class="o">=</span>~ .*i.* <span class="o">]]</span><span class="p">;</span> <span class="k">then</span> <span class="nb">bind</span> <span class="s1">&#39;&#34;\C-r&#34;: &#34;\C-a hstr -- \C-j&#34;&#39;</span><span class="p">;</span> <span class="k">fi</span>
+<span class="c1"># if this is interactive shell, then bind &#39;kill last command&#39; to Ctrl-x k</span>
+<span class="k">if</span> <span class="o">[[</span> <span class="nv">$-</span> <span class="o">=</span>~ .*i.* <span class="o">]]</span><span class="p">;</span> <span class="k">then</span> <span class="nb">bind</span> <span class="s1">&#39;&#34;\C-xk&#34;: &#34;\C-a hstr -k \C-j&#34;&#39;</span><span class="p">;</span> <span class="k">fi</span>
+</code></pre></div><p>(I am not using the tool’s default configuration as it overrides HISTFILESIZE and HISTSIZE variables.)</p>
+<p>In terms of features, <code>hstr</code> allows to :</p>
+<ul>
+<li>View commands according to
+<ul>
+<li>History</li>
+<li>Ranking (most used)</li>
+<li>Favorites (I don’t use that but you can pin your favorite commands)</li>
+</ul>
+</li>
+<li>Search commands by
+<ul>
+<li>Match exact (commands starting with the search string)</li>
+<li>Match Regexp</li>
+<li>Match keywords</li>
+</ul>
+</li>
+<li>Configure case sensitivity for the search</li>
+</ul>
+<h2 id="example-of-a-use-case">Example of a use case</h2>
+<p>A few months ago, I had been experimenting with running a temporary docker-in-docker (dind) pod in a
+Kubernetes cluster to try out a few things. In order to use dind, the pod must have a privileged
+security context. There is actually a way to specify this security context in a cli one-liner by
+overriding the pod template, that gives a pretty long bash command with some json in it, not
+something I want to remember when I get it working.</p>
+<p>To find this command back, I type Ctrl-R to open the hstr tool. Then I type two times Ctrl-E to
+search by keywords. I remember that it was a <code>kubectl</code> command and that I used <code>privileged</code>
+somewhere in that command, so I just need to write those two keywords.</p>
+<figure><img src="https://docs.google.com/presentation/d/1BHHwjFEXcg6kRiGXSaP7coVxl1s1mlTeXIeoKxA9Uzc/export/jpeg?id=1BHHwjFEXcg6kRiGXSaP7coVxl1s1mlTeXIeoKxA9Uzc&amp;pageid=p" width="100%"/>
+</figure>
+
+<p>Then, <code>hstr</code> succesfully finds my command back:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">kubectl run -n edp tmp-shell --image<span class="o">=</span>docker:18.09.6-dind --rm -i --tty --overrides<span class="o">=</span><span class="s1">&#39;{&#34;spec&#34;: {&#34;containers&#34;: [{&#34;name&#34;: &#34;tmp-shell&#34;, &#34;image&#34;: &#34;docker:18.09.6-dind&#34;, &#34;securityContext&#34;: {&#34;privileged&#34;: true} }]}}&#39;</span>
+</code></pre></div><p>… Nice and easy :-)</p>
+
+      
+      <div class="blog-tags">
+        
+        <a href="https://blog.ttauveron.com/tags/linux/">linux</a>&nbsp;
+        
+        <a href="https://blog.ttauveron.com/tags/bash/">bash</a>&nbsp;
+        
+        <a href="https://blog.ttauveron.com/tags/productivity/">productivity</a>&nbsp;
+        
+      </div>
+      
+    </article>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="d-flex justify-content-center">
+        <p class="credits copyright text-muted">
+          Thibaut Tauveron
+          &nbsp;&bull;&nbsp;&copy;
+            2021
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+  </body>
+</html>
+

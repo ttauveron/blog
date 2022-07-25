@@ -17,7 +17,7 @@ Usually, the first thing we do in GKE when we need to expose a service is to set
     </item>
     
     <item>
-      <title>Configuring a TCP proxy between networks in GCP</title>
+      <title>A TCP proxy between networks in GCP</title>
       <link>https://blog.ttauveron.com/posts/configuring_tcp_proxy_between_networks_in_gcp/</link>
       <pubDate>Mon, 08 Feb 2021 00:00:00 +0000</pubDate>
       

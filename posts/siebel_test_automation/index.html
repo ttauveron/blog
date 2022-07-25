@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <meta name="google-site-verification" content="HdqGbEoqInZEWXvmPnmKkcqDkxqI6CsY71SwwETWSOI" />
 
-  <title>Tinkering with Siebel Test Automation | Thibaut Tauveron</title>
-  <meta name="description" content="Reverse engineering Siebel test automation Jenkins plugin to run the tests from any other automation tool">
+  <title>Reverse engineering Siebel Test Automation Jenkins plugin | Thibaut Tauveron</title>
+  <meta name="description" content="Using your own automation system to run Siebel test automation">
   <meta name="author" content="Thibaut Tauveron"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -44,7 +44,7 @@
         "position": 3,
         "item": {
           "@id": "https:\/\/blog.ttauveron.com\/posts\/siebel_test_automation\/",
-          "name": "Tinkering with siebel test automation"
+          "name": "Reverse engineering siebel test automation jenkins plugin"
         }
     }]
 }
@@ -55,8 +55,8 @@
   "author": {
     "name" : "Thibaut Tauveron"
   },
-  "headline": "Tinkering with Siebel Test Automation",
-  "description" : "I have recently been helping a Swedish insurance company to improve their DevOps capabilities. Like many other large companies, they are using an Oracle product called Siebel as their CRM and one of the challenges is to introduce smoke testing through test automation for Siebel.\nOracle provides different tools to orchestrate this test automation in Siebel and this article has been a great resource for me to understand in more detail how it works.",
+  "headline": "Reverse engineering Siebel Test Automation Jenkins plugin",
+  "description" : "I have recently been helping a Swedish insurance company to improve their DevOps capabilities. Like many other large companies, they are using an Oracle product called Siebel as their CRM and one of the challenges is to introduce smoke testing through test automation for Siebel.\nOracle provides different tools to orchestrate this test automation in Siebel and this article has been a great resource for me to understand in more details how it works.",
   "inLanguage" : "en",
   "wordCount":  1291 ,
   "datePublished" : "2021-08-07T00:00:00",
@@ -77,8 +77,8 @@
 }
 </script>
 
-<meta property="og:title" content="Tinkering with Siebel Test Automation" />
-<meta property="og:description" content="Reverse engineering Siebel test automation Jenkins plugin to run the tests from any other automation tool">
+<meta property="og:title" content="Reverse engineering Siebel Test Automation Jenkins plugin" />
+<meta property="og:description" content="Using your own automation system to run Siebel test automation">
 <meta property="og:image" content="https://gitlab.com/thibaut.tauveron/images/-/raw/master/headers/siebel-jenkins.png" />
 <meta name="publish_date" property="og:publish_date" content='2021-08-07T00:00:00Z'>
 
@@ -86,8 +86,8 @@
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Thibaut Tauveron" />
 
-  <meta name="twitter:title" content="Tinkering with Siebel Test Automation" />
-  <meta name="twitter:description" content="Reverse engineering Siebel test automation Jenkins plugin to run the tests from any other automation tool">
+  <meta name="twitter:title" content="Reverse engineering Siebel Test Automation Jenkins plugin" />
+  <meta name="twitter:description" content="Using your own automation system to run Siebel test automation">
   <meta name="twitter:image" content="https://gitlab.com/thibaut.tauveron/images/-/raw/master/headers/siebel-jenkins.png" />
   <meta name="twitter:card" content="summary" />
   <link href='https://blog.ttauveron.com/img/favicon.ico' rel='icon' type='image/x-icon'/>
@@ -133,11 +133,11 @@
 <div class="container" role="main">
   <div class="row">
     <article role="main" class="blog-post">
-      <h1>Tinkering with Siebel Test Automation</h1>
+      <h1>Reverse engineering Siebel Test Automation Jenkins plugin</h1>
       <span class="date">Saturday, August 7, 2021</span>
       <p>I have recently been helping a Swedish insurance company to improve their DevOps capabilities.
 Like many other large companies, they are using an Oracle product called <a href="https://www.oracle.com/cx/siebel/">Siebel</a> as their CRM and one of the challenges is to introduce smoke testing through test automation for Siebel.</p>
-<p>Oracle provides different tools to orchestrate this test automation in Siebel and <a href="https://www.boxfusionconsulting.com/article/getting-started-with-siebel-test-automation">this article</a> has been a great resource for me to understand in more detail how it works.</p>
+<p>Oracle provides different tools to orchestrate this test automation in Siebel and <a href="https://www.boxfusionconsulting.com/article/getting-started-with-siebel-test-automation">this article</a> has been a great resource for me to understand in more details how it works.</p>
 <h3 id="recording-a-functional-test">Recording a functional test</h3>
 <p>First, we can use the Siebel Usage Pattern Tracking framework (UPT).
 This is a feature in Siebel which allows to record user actions in the Siebel web interface and to replay those later on.

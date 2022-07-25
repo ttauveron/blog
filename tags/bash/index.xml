@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Mon, 12 Apr 2021 17:20:31 +0200</lastBuildDate><atom:link href="https://blog.ttauveron.com/tags/bash/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Writing an openvpn bash wrapper with completion</title>
+      <title>A basic openvpn bash wrapper with completion</title>
       <link>https://blog.ttauveron.com/posts/vpn_bash_helper/</link>
       <pubDate>Mon, 12 Apr 2021 17:20:31 +0200</pubDate>
       
@@ -16,6 +16,16 @@
 My ideal VPN cli would be super simple : connect, disconnect and bash completion for everything.
 As cumbersome + linux often leads to automation, my solution involves a little bit of bash :-)
 Install The following code needs to be sourced. Personally, I&amp;rsquo;ve added it to my .</description>
+    </item>
+    
+    <item>
+      <title>Capitalizing on the Linux commands history</title>
+      <link>https://blog.ttauveron.com/posts/capitalizing_on_the_linux_commands_history/</link>
+      <pubDate>Tue, 09 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.ttauveron.com/posts/capitalizing_on_the_linux_commands_history/</guid>
+      <description>Working with Linux I tend to forget commands that I’m not using regularly. I also don&amp;rsquo;t like to retype a long command. Fortunately, the bash history can be used to find back those previous commands.
+The basic usage is to cycle through the bash history with the up and down keys, we also can use Ctrl-R to type the beginning of a command and autocomplete it according to the history.</description>
     </item>
     
   </channel>

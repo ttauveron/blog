@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>linux on Thibaut Tauveron</title>
+    <link>https://blog.ttauveron.com/tags/linux/</link>
+    <description>Recent content in linux on Thibaut Tauveron</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 09 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.ttauveron.com/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Capitalizing on the Linux commands history</title>
+      <link>https://blog.ttauveron.com/posts/capitalizing_on_the_linux_commands_history/</link>
+      <pubDate>Tue, 09 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.ttauveron.com/posts/capitalizing_on_the_linux_commands_history/</guid>
+      <description>Working with Linux I tend to forget commands that I’m not using regularly. I also don&amp;rsquo;t like to retype a long command. Fortunately, the bash history can be used to find back those previous commands.
+The basic usage is to cycle through the bash history with the up and down keys, we also can use Ctrl-R to type the beginning of a command and autocomplete it according to the history.</description>
+    </item>
+    
+  </channel>
+</rss>
