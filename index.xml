@@ -5,7 +5,16 @@
     <link>https://blog.ttauveron.com/</link>
     <description>Recent content on Thibaut Tauveron</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 07 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.ttauveron.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 09 Aug 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.ttauveron.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Hive - Tryhackme</title>
+      <link>https://blog.ttauveron.com/posts/tryhackme_thehive/</link>
+      <pubDate>Tue, 09 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.ttauveron.com/posts/tryhackme_thehive/</guid>
+      <description>If you don&amp;rsquo;t know about tryhackme.com, it&amp;rsquo;s an online platform for learning cyber security hands-on. Multiple &amp;ldquo;rooms&amp;rdquo; are available to get better in cybersecurity. Usually, a room consists in a vulnerable system running in a virtual machine that you can access through a private ip. Your goal is to get flags hidden in the system by discovering and exploiting various vulnerabilities. Users can also propose their own rooms, it makes it quite fun to solve other people challenges and share knowledge!</description>
+    </item>
+    
     <item>
       <title>Reverse engineering Siebel Test Automation Jenkins plugin</title>
       <link>https://blog.ttauveron.com/posts/siebel_test_automation/</link>
