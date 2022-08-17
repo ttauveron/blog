@@ -16,6 +16,16 @@
     </item>
     
     <item>
+      <title>Palsforlife - Tryhackme</title>
+      <link>https://blog.ttauveron.com/posts/tryhackme_palsforlife/</link>
+      <pubDate>Tue, 01 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.ttauveron.com/posts/tryhackme_palsforlife/</guid>
+      <description>TryHackMe is a platform to learn cyber security hands-on, they make it really fun to solve challenges and learn new tools &amp;amp; techniques. Making my way through challenges, I noticed there was only one room involving Kubernetes.
+As Kubernetes has gained quite some popularity over the last few years, k8s clusters are now interesting targets so it&amp;rsquo;s good to learn how a cluster can be compromised to be better at securing it, that&amp;rsquo;s why I designed and proposed a room called palsforlife about k8s (and world of warcraft!</description>
+    </item>
+    
+    <item>
       <title>Capitalizing on the Linux commands history</title>
       <link>https://blog.ttauveron.com/posts/capitalizing_on_the_linux_commands_history/</link>
       <pubDate>Tue, 09 Mar 2021 00:00:00 +0000</pubDate>

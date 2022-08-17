@@ -15,5 +15,15 @@
       <description>If you don&amp;rsquo;t know about tryhackme.com, it&amp;rsquo;s an online platform for learning cyber security hands-on. Multiple &amp;ldquo;rooms&amp;rdquo; are available to get better in cybersecurity. Usually, a room consists in a vulnerable system running in a virtual machine that you can access through a private ip. Your goal is to get flags hidden in the system by discovering and exploiting various vulnerabilities. Users can also propose their own rooms, it makes it quite fun to solve other people challenges and share knowledge!</description>
     </item>
     
+    <item>
+      <title>Palsforlife - Tryhackme</title>
+      <link>https://blog.ttauveron.com/posts/tryhackme_palsforlife/</link>
+      <pubDate>Tue, 01 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.ttauveron.com/posts/tryhackme_palsforlife/</guid>
+      <description>TryHackMe is a platform to learn cyber security hands-on, they make it really fun to solve challenges and learn new tools &amp;amp; techniques. Making my way through challenges, I noticed there was only one room involving Kubernetes.
+As Kubernetes has gained quite some popularity over the last few years, k8s clusters are now interesting targets so it&amp;rsquo;s good to learn how a cluster can be compromised to be better at securing it, that&amp;rsquo;s why I designed and proposed a room called palsforlife about k8s (and world of warcraft!</description>
+    </item>
+    
   </channel>
 </rss>
